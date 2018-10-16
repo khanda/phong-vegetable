@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {Button} from 'react-native';
 
-const Link = ({ active, children, onClick }) => (
-    <button
-       onClick={onClick}
-       disabled={active}
-       style={{
-           marginLeft: '4px',
-       }}
-    >
-      {children}
-    </button>
+const Link = ({active, children, onClick}) => (
+  <Button
+    title={children}
+    color="#841584"
+    onPress={onClick}
+    disabled={active}
+    style={{
+      marginLeft: '4px',
+    }}
+    accessibilityLabel={children}
+  >
+  </Button>
 )
 
 Link.propTypes = {

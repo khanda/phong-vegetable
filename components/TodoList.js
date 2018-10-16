@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Todo from './Todo'
+import {View} from 'react-native'
 
-const TodoList = ({ todos, toggleTodo }) => (
-  <ul>
+const TodoList = ({todos, toggleTodo}) => (
+  <View>
     {todos.map(todo =>
       <Todo
         key={todo.id}
@@ -11,7 +12,7 @@ const TodoList = ({ todos, toggleTodo }) => (
         onClick={() => toggleTodo(todo.id)}
       />
     )}
-  </ul>
+  </View>
 )
 
 TodoList.propTypes = {
