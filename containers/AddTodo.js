@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addTodo} from '../actions'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
+import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
 
 const AddTodo = ({dispatch}) => {
   let model = {
@@ -26,11 +27,7 @@ const AddTodo = ({dispatch}) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        onChangeText={value => updateState(value)}
-        value={model.input}
-      />
+      <FormInput onChangeText={value => updateState(value)} value={model.input}/>
       <Button onPress={submitTodo} title="Sunmit" color="#841584"/>
     </View>
   )
@@ -38,15 +35,8 @@ const AddTodo = ({dispatch}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 5,
-    paddingRight: 5
-  },
-
-  input: {
-    padding:10,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1
+    // paddingLeft: 5,
+    // paddingRight: 5
   }
 })
 
