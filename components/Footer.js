@@ -1,20 +1,8 @@
 import React from 'react'
-import FilterLink from '../containers/FilterLink'
-import { VisibilityFilters } from '../actions'
+import {Text} from 'react-native';
 
-const Footer = () => (
-  <div>
-    <span>Show: </span>
-    <FilterLink filter={VisibilityFilters.SHOW_ALL}>
-      All
-    </FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>
-      Active
-    </FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
-      Completed
-    </FilterLink>
-  </div>
-)
-
-export default Footer
+export class Footer extends React.Component {
+  render() {
+    return <Text {...this.props} style={[this.props.style, {fontFamily: 'space-mono'}]}/>;
+  }
+}
