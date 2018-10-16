@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {View, Text, StyleSheet} from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Icon} from 'react-native-elements'
-import {MonoText} from "./StyledText";
 
 
 const Todo = ({onClick, completed, text}) => (
-  <View>
+  <TouchableOpacity onPress={onClick}>
     <View style={styles.container}>
-      <MonoText onPress={onClick}>{text}</MonoText>
+      <Text>{text}</Text>
       <Icon name='done' color={completed ? 'green' : 'transparent'}/>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 Todo.propTypes = {
@@ -24,7 +23,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#d6d7da',
+    paddingTop: 7,
+    paddingBottom: 7
   }
 });
 
