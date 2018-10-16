@@ -4,24 +4,31 @@ import {addTodo} from '../actions'
 import {View, Button, TextInput} from 'react-native'
 
 const AddTodo = ({dispatch}) => {
-  let input = 'item 1';
+  let model = {
+    input: 'item 1'
+  };
 
-  function submitTodo(e) {
+  function submitTodo() {
+    let input = model.input;
     console.log(input);
     if (!input || !input.trim()) {
       console.log('empty string is invalid');
       return
     }
     dispatch(addTodo(input));
-    input = '';
+    updateState('');
+  }
+
+  function updateState(inputValue) {
+    model.input = inputValue;
   }
 
   return (
     <View>
       <TextInput
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={value => input = value}
-        value={input}
+        onChangeText={value => updateState(value)}
+        value={model.input}
       />
       <Button
         onPress={submitTodo}
