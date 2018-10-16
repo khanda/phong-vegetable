@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addTodo} from '../actions'
-import {View, Button, TextInput} from 'react-native'
+import {Button, StyleSheet, TextInput, View} from 'react-native'
 
 const AddTodo = ({dispatch}) => {
   let model = {
@@ -16,28 +16,38 @@ const AddTodo = ({dispatch}) => {
       return
     }
     dispatch(addTodo(input));
-    updateState('');
+    updateState(null);
   }
 
   function updateState(inputValue) {
+    console.log(inputValue);
     model.input = inputValue;
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        style={styles.input}
         onChangeText={value => updateState(value)}
         value={model.input}
       />
-      <Button
-        onPress={submitTodo}
-        title="Sunmit"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
-      />
+      <Button onPress={submitTodo} title="Sunmit" color="#841584"/>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+
+  input: {
+    padding:10,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1
+  }
+})
 
 export default connect()(AddTodo)
