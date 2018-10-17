@@ -6,9 +6,9 @@ import AddTodo from "../containers/AddTodo";
 import VisibleTodoList from "../containers/VisibleTodoList";
 import CustomerList from "../components/CustomerList";
 
-export default class HomeScreen extends React.Component {
+export default class CustomerScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home'
+    title: 'Customer'
   };
 
   render() {

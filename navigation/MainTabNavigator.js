@@ -1,25 +1,25 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {Platform} from 'react-native';
+import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import CustomerScreen from '../screens/CustomerScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+  Customer: CustomerScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
+  tabBarLabel: 'Khách hàng',
+  tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-contacts${focused ? '' : '-outline'}`
+          : 'users'
       }
     />
   ),
@@ -31,7 +31,7 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
@@ -45,7 +45,7 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
       name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
