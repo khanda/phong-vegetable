@@ -5,9 +5,6 @@ const EmailType = t.subtype(t.Str, (email) => {
 });
 
 EmailType.getValidationErrorMessage = function (value, path, context) {
-  console.log(value);
-  console.log(path);
-  console.log(context);
   return 'email is invalid';
 };
 

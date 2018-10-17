@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addTodo} from '../actions'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
 import t from 'tcomb-form-native';
-import tFormType from "../tFormType";
+import {addTodo} from "../actions";
+import DB from "../DB";
 
 const TodoModel = t.struct({
-  text: tFormType.email
+  text: t.String
 });
 
 const options = {
@@ -36,6 +36,12 @@ const AddTodo = ({dispatch}) => {
     }
   }
 
+  function getAllTodo() {
+    DB.todos.get_all(function (result) {
+      console.log(result);
+    })
+  }
+
   function syncModelAndForm() {
     const value = _form.getValue();
     if (!value) return null;
@@ -52,6 +58,11 @@ const AddTodo = ({dispatch}) => {
     let text = model.text;
     if (!text || !text.trim()) return;
     dispatch(addTodo(text));
+
+    DB.todos.add(model, function (added_data) {
+      console.log(added_data);
+    })
+
   }
 
   return (
@@ -63,6 +74,8 @@ const AddTodo = ({dispatch}) => {
             context={{locale: 'it-IT'}}
       />
       <Button onPress={submitTodo} title="Sunmit" color="#841584"/>
+
+      <Button onPress={getAllTodo} title="get user" color="#841584"/>
     </View>
   )
 };
