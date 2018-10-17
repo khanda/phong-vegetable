@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Icon} from 'react-native-elements'
 
-
 const Todo = ({onClick, completed, text}) => (
   <TouchableOpacity onPress={onClick}>
     <View style={styles.container}>

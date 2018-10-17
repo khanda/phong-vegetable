@@ -2,42 +2,63 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addTodo} from '../actions'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
-import {FormLabel, FormInput, FormValidationMessage} from 'react-native-elements'
+import t from 'tcomb-form-native';
+
+const TodoModel = t.struct({
+  text: t.String
+});
+
+const options = {
+  fields: {
+    text: {
+      label: 'Nội dung',
+    },
+  },
+};
+
+const Form = t.form.Form;
 
 const AddTodo = ({dispatch}) => {
-  let model = {
-    input: 'item 1'
-  };
 
-  function submitTodo() {
-    let input = model.input;
-    console.log(input);
-    if (!input || !input.trim()) {
-      console.log('empty string is invalid');
-      return
+  function TodoEntity() {
+    return {
+      text: null
     }
-    dispatch(addTodo(input));
-    updateState(null);
   }
 
-  function updateState(inputValue) {
-    console.log(inputValue);
-    model.input = inputValue;
+  function syncModelAndForm() {
+    const value = _form.getValue();
+    if (!value) return null;
+
+    let model = new TodoEntity();
+    model.text = value.text;
+
+    return model;
+  }
+
+  function submitTodo() {
+    let model = syncModelAndForm();
+    if (!model) return;
+    let text = model.text;
+    if (!text || !text.trim()) return;
+    dispatch(addTodo(text));
   }
 
   return (
     <View style={styles.container}>
-      <FormInput onChangeText={value => updateState(value)} value={model.input}/>
+      <Form ref={c => this._form = c}
+            type={TodoModel}
+            options={options}
+      />
       <Button onPress={submitTodo} title="Sunmit" color="#841584"/>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    // paddingLeft: 5,
-    // paddingRight: 5
+    padding: 10
   }
-})
+});
 
 export default connect()(AddTodo)

@@ -1,14 +1,19 @@
+import {AsyncStorage} from "react-native"
+
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return [
+      let newState = [
         ...state,
         {
           id: action.id,
           text: action.text,
           completed: false
         }
-      ]
+      ];
+      AsyncStorage.setItem("myKey", JSON.stringify(newState));
+
+      return newState;
     case 'TOGGLE_TODO':
       return state.map(todo =>
         (todo.id === action.id)
