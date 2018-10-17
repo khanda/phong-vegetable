@@ -3,15 +3,18 @@ import {Platform} from 'react-native';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import CustomerScreen from '../screens/CustomerScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import CustomerList from "../components/CustomerList";
 
-const HomeStack = createStackNavigator({
-  Customer: CustomerScreen,
-});
+const CustomerStack = createStackNavigator({
+    CustomerList: CustomerList
+  },
+  {
+    initialRouteName: 'CustomerList',
+  });
 
-HomeStack.navigationOptions = {
+CustomerStack.navigationOptions = {
   tabBarLabel: 'Khách hàng',
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -54,7 +57,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  CustomerStack,
   LinksStack,
   SettingsStack,
 });

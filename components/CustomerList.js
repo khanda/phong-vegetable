@@ -3,6 +3,10 @@ import {List, ListItem} from 'react-native-elements'
 import {StyleSheet, View, ScrollView} from 'react-native'
 
 class CustomerList extends React.Component {
+  static navigationOptions = {
+    title: 'Customers'
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,6 +53,7 @@ class CustomerList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    marginBottom: 5
   }
 });
 
