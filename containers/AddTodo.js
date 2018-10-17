@@ -12,6 +12,7 @@ const options = {
   fields: {
     text: {
       label: 'Nội dung',
+      error: 'Email không được để trống'
     },
   },
 };
