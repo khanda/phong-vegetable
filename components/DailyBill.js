@@ -1,6 +1,7 @@
 import React from 'react'
 import {ScrollView, StyleSheet, View, Text} from 'react-native'
 import moment from 'moment'
+import {ListItem} from 'react-native-elements'
 
 class DailyBill extends React.Component {
   static navigationOptions = {
@@ -26,9 +27,13 @@ class DailyBill extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
-          <Text>{_id}</Text>
-          <Text>{name}</Text>
-          <Text>{avatar}</Text>
+          <ListItem
+            key={_id}
+            title={name}
+            roundAvatar
+            avatar={{uri: avatar}}
+            rightIcon={{name: 'chevron-right', color: 'transparent'}}
+          />
         </ScrollView>
       </View>
     )

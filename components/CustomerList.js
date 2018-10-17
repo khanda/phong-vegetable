@@ -1,6 +1,6 @@
 import React from 'react'
 import {List, ListItem} from 'react-native-elements'
-import {Button, ScrollView, StyleSheet, View} from 'react-native'
+import {Button, ScrollView, StyleSheet, View, TouchableOpacity} from 'react-native'
 
 class CustomerList extends React.Component {
   static navigationOptions = {
@@ -40,13 +40,13 @@ class CustomerList extends React.Component {
           <List>
             {
               customers.map((item) => (
-                <ListItem
-                  key={item._id}
-                  title={item.name}
-                  roundAvatar
-                  avatar={{uri: item.avatar}}
-                  onPress={() => this.onPressItem(item)}
-                />
+                <TouchableOpacity key={item._id} onPress={() => this.onPressItem(item)}>
+                  <ListItem
+                    title={item.name}
+                    roundAvatar
+                    avatar={{uri: item.avatar}}
+                  />
+                </TouchableOpacity>
               ))
             }
           </List>
