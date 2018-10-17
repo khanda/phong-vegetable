@@ -5,7 +5,7 @@ import {ListItem} from 'react-native-elements'
 
 class DailyBill extends React.Component {
   static navigationOptions = {
-    title: 'Daily Bill'
+    title: 'Hóa đơn'
   };
 
   constructor(props) {

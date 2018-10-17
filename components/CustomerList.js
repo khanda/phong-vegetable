@@ -4,7 +4,7 @@ import {Button, ScrollView, StyleSheet, View, TouchableOpacity} from 'react-nati
 
 class CustomerList extends React.Component {
   static navigationOptions = {
-    title: 'Customers'
+    title: 'Khách hàng'
   };
 
   constructor(props) {
