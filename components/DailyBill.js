@@ -2,6 +2,32 @@ import React from 'react'
 import {ScrollView, StyleSheet, View, Text} from 'react-native'
 import moment from 'moment'
 import {ListItem} from 'react-native-elements'
+import t from 'tcomb-form-native';
+
+const DailyBillFilter = t.struct({
+  date: t.Date
+});
+const options = {
+  fields: {
+    date: {
+      label: 'Ngày',
+      error: 'Chỉ chọn ngày trong quá khứ',
+      help: 'Chọn ngày để xem nội dung hóa đơn',
+      maximumDate: new Date(),
+      mode: 'date',
+      config: {
+        format: (date) => {
+          return moment(date).format('DD-MM-YYYY');
+        }
+      }
+    }
+  }
+};
+const Form = t.form.Form;
+
+function formatDate(date) {
+  return '20-11-2018';
+}
 
 class DailyBill extends React.Component {
   static navigationOptions = {
@@ -33,6 +59,11 @@ class DailyBill extends React.Component {
             roundAvatar
             avatar={{uri: avatar}}
             rightIcon={{name: 'chevron-right', color: 'transparent'}}
+          />
+          <Form ref={c => this._form = c}
+                value={this.state.filter}
+                type={DailyBillFilter}
+                options={options}
           />
         </ScrollView>
       </View>
