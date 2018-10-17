@@ -3,19 +3,22 @@ import {connect} from 'react-redux'
 import {addTodo} from '../actions'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
 import t from 'tcomb-form-native';
+import tFormType from "../tFormType";
 
-const Email = t.subtype(t.Str, (email) => {
-  return email === 'xxx';
-});
 const TodoModel = t.struct({
-  text: Email
+  text: tFormType.email
 });
 
 const options = {
+  // stylesheet: globalStyles.materialDesign,
+  auto: 'none' || 'placeholders',
+  order: ['text'],
   fields: {
     text: {
       label: 'Nội dung',
-      error: 'Email khong hop le'
+      error: 'invalid',
+      placeholder: 'enter content',
+      // help: 'this is help message'
     },
   },
 };
@@ -23,6 +26,9 @@ const options = {
 const Form = t.form.Form;
 
 const AddTodo = ({dispatch}) => {
+  this.state = {
+    model: new TodoEntity()
+  };
 
   function TodoEntity() {
     return {
@@ -51,8 +57,10 @@ const AddTodo = ({dispatch}) => {
   return (
     <View style={styles.container}>
       <Form ref={c => this._form = c}
+            value={this.state.model}
             type={TodoModel}
             options={options}
+            context={{locale: 'it-IT'}}
       />
       <Button onPress={submitTodo} title="Sunmit" color="#841584"/>
     </View>
