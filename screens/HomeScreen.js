@@ -4,20 +4,17 @@ import {WebBrowser} from 'expo';
 import {Footer} from "../components/Footer";
 import AddTodo from "../containers/AddTodo";
 import VisibleTodoList from "../containers/VisibleTodoList";
+import CustomerList from "../components/CustomerList";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Home'
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <AddTodo/>
-          <VisibleTodoList/>
-        </ScrollView>
-        <Footer/>
+        <CustomerList></CustomerList>
       </View>
     );
   }
