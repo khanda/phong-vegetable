@@ -28,7 +28,7 @@ class CustomerList extends React.Component {
   }
 
   onPressItem(item) {
-    console.log(item);
+    this.props.navigation.navigate('DailyBill', item);
   }
 
   render() {

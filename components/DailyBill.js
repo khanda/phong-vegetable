@@ -1,5 +1,5 @@
 import React from 'react'
-import {ScrollView, StyleSheet, View} from 'react-native'
+import {ScrollView, StyleSheet, View, Text} from 'react-native'
 import moment from 'moment'
 
 class DailyBill extends React.Component {
@@ -18,12 +18,17 @@ class DailyBill extends React.Component {
   }
 
   render() {
-    console.log(this.state.filter);
+    const {navigation} = this.props;
+    const _id = navigation.getParam('_id', null);
+    const name = navigation.getParam('name', null);
+    const avatar = navigation.getParam('avatar', '');
 
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
-
+          <Text>{_id}</Text>
+          <Text>{name}</Text>
+          <Text>{avatar}</Text>
         </ScrollView>
       </View>
     )
