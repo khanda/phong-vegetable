@@ -1,7 +1,7 @@
 import React from 'react'
-import {ScrollView, StyleSheet, View, Text} from 'react-native'
+import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import moment from 'moment'
-import {ListItem} from 'react-native-elements'
+import {Button, ListItem} from 'react-native-elements'
 import t from 'tcomb-form-native';
 
 const DailyBillFilter = t.struct({
@@ -10,9 +10,8 @@ const DailyBillFilter = t.struct({
 const options = {
   fields: {
     date: {
-      label: 'Ngày',
+      label: 'Chọn ngày để xem nội dung hóa đơn',
       error: 'Chỉ chọn ngày trong quá khứ',
-      help: 'Chọn ngày để xem nội dung hóa đơn',
       maximumDate: new Date(),
       mode: 'date',
       config: {
@@ -44,6 +43,10 @@ class DailyBill extends React.Component {
     }
   }
 
+  onPressView() {
+    alert('11');
+  }
+
   render() {
     const {navigation} = this.props;
     const _id = navigation.getParam('_id', null);
@@ -65,6 +68,7 @@ class DailyBill extends React.Component {
                 type={DailyBillFilter}
                 options={options}
           />
+          <Button title="Xem" backgroundColor="green" onPress={this.onPressView}/>
         </ScrollView>
       </View>
     )
