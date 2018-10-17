@@ -4,15 +4,18 @@ import {addTodo} from '../actions'
 import {Button, StyleSheet, TextInput, View} from 'react-native'
 import t from 'tcomb-form-native';
 
+const Email = t.subtype(t.Str, (email) => {
+  return email === 'xxx';
+});
 const TodoModel = t.struct({
-  text: t.String
+  text: Email
 });
 
 const options = {
   fields: {
     text: {
       label: 'Nội dung',
-      error: 'Email không được để trống'
+      error: 'Email khong hop le'
     },
   },
 };
