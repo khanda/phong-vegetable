@@ -1,6 +1,6 @@
 import React from 'react'
 import {List, ListItem} from 'react-native-elements'
-import {StyleSheet, View, ScrollView} from 'react-native'
+import {Button, ScrollView, StyleSheet, View} from 'react-native'
 
 class CustomerList extends React.Component {
   static navigationOptions = {
@@ -27,6 +27,10 @@ class CustomerList extends React.Component {
     }
   }
 
+  onPressItem(item) {
+    console.log(item);
+  }
+
   render() {
     const customers = this.state.customers;
 
@@ -41,6 +45,7 @@ class CustomerList extends React.Component {
                   title={item.name}
                   roundAvatar
                   avatar={{uri: item.avatar}}
+                  onPress={() => this.onPressItem(item)}
                 />
               ))
             }

@@ -4,7 +4,7 @@ import {WebBrowser} from 'expo';
 import CustomerStack from "../navigation/MainTabNavigator";
 
 
-export default class CustomerScreen extends React.Component {
+class CustomerScreen extends React.Component {
 
   render() {
     return (
@@ -25,3 +25,5 @@ const styles = StyleSheet.create({
   },
   footer: {}
 });
+
+export default CustomerScreen
