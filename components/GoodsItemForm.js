@@ -42,37 +42,42 @@ class GoodsItemForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {/*LEFT*/}
-        <View style={styles.leftContainer}>
-          <Text style={styles.label}>{this.state.goods.name}</Text>
-          <TextInput
-            style={styles.input}
-            keyboardType='numeric'
-            returnKeyType="go"
-            onChangeText={this.onChangeQuantityInput}
-            value={String(this.state.goods.quantity)}
+      <View style={styles.colContainer}>
+        <View style={styles.rowContainer}>
+          {/*LEFT*/}
+          <View style={styles.leftContainer}>
+            <Text style={styles.label}>{this.state.goods.name}</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType='numeric'
+              returnKeyType="go"
+              onChangeText={this.onChangeQuantityInput}
+              value={String(this.state.goods.quantity)}
 
-          />
+            />
+          </View>
+          {/*RIGHT*/}
+          <View style={styles.rightContainer}>
+            <TouchableOpacity style={styles.plusBtn} onPress={this.increase}>
+              <Icon
+                name='plus'
+                size={26}
+                type='font-awesome'
+                color='white'
+              />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.minusBtn} onPress={this.decrease}>
+              <Icon
+                name='minus'
+                size={26}
+                type='font-awesome'
+                color='white'
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        {/*RIGHT*/}
-        <View style={styles.rightContainer}>
-          <TouchableOpacity style={styles.plusBtn} onPress={this.increase}>
-            <Icon
-              name='plus'
-              size={26}
-              type='font-awesome'
-              color='white'
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.minusBtn} onPress={this.decrease}>
-            <Icon
-              name='minus'
-              size={26}
-              type='font-awesome'
-              color='white'
-            />
-          </TouchableOpacity>
+        <View style={styles.error}>
+          <Text style={styles.errorMsg}>khong hop le</Text>
         </View>
       </View>
     )
@@ -80,7 +85,11 @@ class GoodsItemForm extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  colContainer: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  rowContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -123,6 +132,12 @@ const styles = StyleSheet.create({
     width: 70,
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5
+  },
+  error: {
+    paddingLeft: 10
+  },
+  errorMsg: {
+    color: 'red'
   }
 });
 
