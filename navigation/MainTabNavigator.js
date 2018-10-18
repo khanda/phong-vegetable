@@ -8,10 +8,12 @@ import SettingsScreen from '../screens/SettingsScreen';
 import CustomerList from "../components/CustomerList";
 import CustomerListScreen from "../screens/CustomerListScreen";
 import DailyBillScreen from "../screens/DailyBillScreen";
+import BillFormScreen from "../screens/BillFormcreen";
 
 const CustomerStack = createStackNavigator({
     CustomerList: CustomerListScreen,
-    DailyBill: DailyBillScreen
+    DailyBill: DailyBillScreen,
+    BillForm: BillFormScreen
   },
   {
     initialRouteName: 'CustomerList',

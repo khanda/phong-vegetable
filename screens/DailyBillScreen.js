@@ -1,12 +1,24 @@
 import React from 'react';
-import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Button, Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WebBrowser} from 'expo';
 import DailyBillListContainer from "../containers/DailyBillListContainer";
 import DailyBillFilterFormContainer from "../containers/DailyBillFilterFormContainer";
 
 class DailyBillScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Hóa đơn'
+  constructor(props) {
+    super(props);
+  }
+
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Hóa đơn',
+      headerRight: (
+        <Button
+          onPress={() => navigation.navigate('BillForm')}
+          title="Thêm"
+        />
+      )
+    }
   };
 
   render() {
