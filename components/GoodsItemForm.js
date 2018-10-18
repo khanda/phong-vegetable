@@ -1,14 +1,23 @@
 import React from 'react'
-import {Button, ScrollView, StyleSheet, Text, View, TouchableOpacity} from 'react-native'
-import {Icon} from 'react-native-elements'
+import {Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native'
+import {Icon, FormInput} from 'react-native-elements'
 
 const GoodsItemForm = ({goods}) => {
+  function onChangeQuantityInput() {
+
+  }
+
   return (
     <View style={styles.container}>
       {/*LEFT*/}
       <View style={styles.leftContainer}>
         <Text style={styles.label}>{goods.name}</Text>
-        <Text style={styles.label}>{goods.quantity}</Text>
+        <TextInput
+          style={styles.input}
+          keyboardType='numeric'
+          onChangeText={onChangeQuantityInput}
+          value={goods.quantity}
+        />
       </View>
       {/*RIGHT*/}
       <View style={styles.rightContainer}>
@@ -47,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'red'
+    // backgroundColor: 'red'
   },
   rightContainer: {
     display: 'flex',
@@ -71,8 +80,13 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     borderRadius: 5
+  },
+  input: {
+    height: 40,
+    width: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5
   }
-
 });
 
 export default GoodsItemForm
