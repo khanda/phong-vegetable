@@ -9,7 +9,8 @@ class GoodsItemForm extends React.Component {
     super(props);
 
     this.state = {
-      goods: props.goods
+      goods: props.goods,
+      error: false
     };
     this.onChangeQuantityInput = this.onChangeQuantityInput.bind(this);
     this.increase = this.increase.bind(this);
@@ -19,25 +20,35 @@ class GoodsItemForm extends React.Component {
   isValid(value) {
     if (!value) return false;
     const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
-    return positiveIntegerRegex.test(value);
+    console.log(value);
+    return value == 0 || positiveIntegerRegex.test(value);
+  }
+
+  hideError() {
+    this.setState({error: false});
+  }
+
+  showError() {
+    this.setState({error: true});
   }
 
   onChangeQuantityInput(value) {
-    if (!this.isValid(value)) return;
-    console.log(value);
+    this.hideError();
+    if (!this.isValid(value)) {
+      this.showError()
+      return;
+    }
     this.props.goods.quantity = value;
   }
 
   increase() {
     if (this.props.goods.quantity === MAX_QUANTITY) return;
     this.state.goods.quantity += 1;
-    console.log(this.state.goods.quantity);
   }
 
   decrease() {
     if (this.state.goods.quantity === 0) return;
     this.state.goods.quantity -= 1;
-    console.log(this.state.goods.quantity);
   }
 
   render() {
@@ -76,9 +87,14 @@ class GoodsItemForm extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.error}>
-          <Text style={styles.errorMsg}>khong hop le</Text>
-        </View>
+        {
+          this.state.error ? (
+            <View style={styles.error}>
+              <Text style={styles.errorMsg}>khong hop le</Text>
+            </View>
+          ) : null
+        }
+
       </View>
     )
   }
