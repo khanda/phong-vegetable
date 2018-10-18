@@ -8,7 +8,7 @@ const DailyBillListContainer = (dailyBillItems) => {
 const mapStateToProps = state => {
   console.log('state', state);
   return {
-    dailyBillItems: state.dailyBillReducer
+    dailyBillItems: state.dailyBillReducer.items
   }
 };
 

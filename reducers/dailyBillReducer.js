@@ -1,4 +1,8 @@
-const dailyBillReducer = (state = [], action) => {
+var initState = {
+  items: []
+};
+
+const dailyBillReducer = (state = initState, action) => {
   switch (action.type) {
     case 'DAILY_BILL_CHANGED':
       var items = [
@@ -8,9 +12,9 @@ const dailyBillReducer = (state = [], action) => {
         {_id: 4, name: 'Ngô', quantity: 33},
       ];
 
-      console.log(state);
-
-      return items;
+      return {
+        items: items
+      };
     default:
       return state
   }
