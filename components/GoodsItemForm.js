@@ -5,25 +5,27 @@ import {Icon} from 'react-native-elements'
 const GoodsItemForm = ({goods}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.flexRowContainer}>
+      {/*LEFT*/}
+      <View style={styles.leftContainer}>
         <Text style={styles.label}>{goods.name}</Text>
         <Text style={styles.label}>{goods.quantity}</Text>
       </View>
-      <View style={styles.flexRowContainer}>
+      {/*RIGHT*/}
+      <View style={styles.rightContainer}>
         <TouchableOpacity style={styles.plusBtn} onPress={() => console.log('hello')}>
-          <Icon style={styles.actionButton}
-                name='plus'
-                size={26}
-                type='font-awesome'
-                color='white'
+          <Icon
+            name='plus'
+            size={26}
+            type='font-awesome'
+            color='white'
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.minusBtn} onPress={() => console.log('hello')}>
-          <Icon style={styles.actionButton}
-                name='minus'
-                size={26}
-                type='font-awesome'
-                color='white'
+          <Icon
+            name='minus'
+            size={26}
+            type='font-awesome'
+            color='white'
           />
         </TouchableOpacity>
       </View>
@@ -37,10 +39,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-
     padding: 10
   },
-  flexRowContainer: {
+  leftContainer: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'red'
+  },
+  rightContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -49,23 +58,19 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 17
   },
-  actionButton: {
-    paddingLeft: 10,
-    paddingRight: 10
-  },
   plusBtn: {
     backgroundColor: 'green',
     padding: 5,
     marginLeft: 5,
     marginRight: 5,
-    borderRadius:5
+    borderRadius: 5
   },
   minusBtn: {
     backgroundColor: 'red',
     padding: 5,
     marginLeft: 5,
     marginRight: 5,
-    borderRadius:5
+    borderRadius: 5
   }
 
 });
