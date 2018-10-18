@@ -3,9 +3,6 @@ import {List, ListItem} from 'react-native-elements'
 import {Button, ScrollView, StyleSheet, View, TouchableOpacity} from 'react-native'
 
 class CustomerList extends React.Component {
-  static navigationOptions = {
-    title: 'Khách hàng'
-  };
 
   constructor(props) {
     super(props);

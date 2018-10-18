@@ -6,11 +6,12 @@ import TabBarIcon from '../components/TabBarIcon';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CustomerList from "../components/CustomerList";
-import DailyBill from "../components/DailyBill";
+import CustomerListScreen from "../screens/CustomerListScreen";
+import DailyBillScreen from "../screens/DailyBillScreen";
 
 const CustomerStack = createStackNavigator({
-    CustomerList: CustomerList,
-    DailyBill: DailyBill
+    CustomerList: CustomerListScreen,
+    DailyBill: DailyBillScreen
   },
   {
     initialRouteName: 'CustomerList',

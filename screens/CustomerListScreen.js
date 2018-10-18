@@ -1,29 +1,24 @@
 import React from 'react';
 import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WebBrowser} from 'expo';
-import CustomerStack from "../navigation/MainTabNavigator";
+import CustomerList from "../components/CustomerList";
 
-
-class CustomerScreen extends React.Component {
+class CustomerListScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Khách hàng'
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <CustomerStack/>
+        <CustomerList navigation={this.props.navigation}/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  footer: {}
+
 });
 
-export default CustomerScreen
+export default CustomerListScreen

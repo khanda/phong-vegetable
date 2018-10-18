@@ -24,60 +24,45 @@ const options = {
 };
 const Form = t.form.Form;
 
-function formatDate(date) {
-  return '20-11-2018';
-}
-
-class DailyBill extends React.Component {
-  static navigationOptions = {
-    title: 'Hóa đơn'
+const DailyBill = ({navigation, customer}) => {
+  this.state = {
+    filter: {
+      date: moment().add(-1, 'day').toDate()
+    },
+    bill: {}
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      filter: {
-        date: moment().add(-1, 'day').toDate()
-      },
-      bill: {}
-    }
+
+  function onPressView() {
+    console.log('on press');
   }
 
-  onPressView() {
-    alert('11');
-  }
+  console.log(customer);
 
-  render() {
-    const {navigation} = this.props;
-    const _id = navigation.getParam('_id', null);
-    const name = navigation.getParam('name', null);
-    const avatar = navigation.getParam('avatar', '');
-
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container}>
-          <ListItem
-            key={_id}
-            title={name}
-            roundAvatar
-            avatar={{uri: avatar}}
-            rightIcon={{name: 'chevron-right', color: 'transparent'}}
-          />
-          <Form ref={c => this._form = c}
-                value={this.state.filter}
-                type={DailyBillFilter}
-                options={options}
-          />
-          <Button title="Xem" backgroundColor="green" onPress={this.onPressView}/>
-        </ScrollView>
-      </View>
-    )
-  }
-}
+  return (
+    <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <ListItem
+          key={customer._id}
+          title={customer.name}
+          roundAvatar
+          avatar={{uri: customer.avatar}}
+          rightIcon={{name: 'chevron-right', color: 'transparent'}}
+        />
+        <Form ref={c => this._form = c}
+              value={this.state.filter}
+              type={DailyBillFilter}
+              options={options}
+        />
+        <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
+      </ScrollView>
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 5
+    marginBottom: 10
   }
 });
 
