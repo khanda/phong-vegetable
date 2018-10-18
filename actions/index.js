@@ -25,3 +25,12 @@ export const getDailyBill = date => ({
   type: 'DAILY_BILL_CHANGED',
   date
 });
+
+export const saveDailyBill = bill => ({
+  type: 'SAVE_BILL',
+  bill
+});
+export const changeDailyBillQuantity = billItem => ({
+  type: 'CHANGE_BILL_ITEM_QUANTITY',
+  billItem
+});

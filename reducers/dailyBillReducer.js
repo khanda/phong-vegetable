@@ -1,5 +1,9 @@
+import _ from 'lodash'
+
 var initState = {
-  items: []
+  items: [],
+  currentBill: {},
+  savedBill: {},
 };
 
 const dailyBillReducer = (state = initState, action) => {
@@ -18,6 +22,11 @@ const dailyBillReducer = (state = initState, action) => {
       return {
         items: items
       };
+
+    case 'SAVE_BILL':
+      const temp = _.clone(state);
+      temp.savedBill = action.bill;
+      return temp;
     default:
       return state
   }
