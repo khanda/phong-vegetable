@@ -3,8 +3,9 @@ import {Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput}
 import {Icon, FormInput} from 'react-native-elements'
 
 const GoodsItemForm = ({goods}) => {
-  function onChangeQuantityInput() {
 
+  function onChangeQuantityInput(value) {
+    console.log(value);
   }
 
   return (
@@ -15,8 +16,10 @@ const GoodsItemForm = ({goods}) => {
         <TextInput
           style={styles.input}
           keyboardType='numeric'
+          returnKeyType="go"
           onChangeText={onChangeQuantityInput}
-          value={goods.quantity}
+          value={String(goods.quantity)}
+
         />
       </View>
       {/*RIGHT*/}
