@@ -1,32 +1,49 @@
 import React from 'react'
-import {Button, ScrollView, StyleSheet, Text, View, TouchableOpacity, TextInput} from 'react-native'
-import {Icon, FormInput} from 'react-native-elements'
+import {Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import {Icon} from 'react-native-elements'
+import _ from 'lodash'
 
+const MAX_QUANTITY = 1000;
 const GoodsItemForm = ({goods}) => {
 
+  var cloneGoods = _.clone(goods);
+  console.log(cloneGoods);
+
+  function isValid(value) {
+    if (!value) return false;
+    const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
+    return positiveIntegerRegex.test(value);
+  }
+
   function onChangeQuantityInput(value) {
+    if (!isValid(value)) return;
     console.log(value);
+    cloneGoods.quantity = value;
   }
 
   function increase() {
-    console.log('increase');
+    if (cloneGoods.quantity === MAX_QUANTITY) return;
+    cloneGoods.quantity += 1;
+    console.log(cloneGoods.quantity);
   }
 
   function decrease() {
-    console.log('decrease');
+    if (cloneGoods.quantity === 0) return;
+    cloneGoods.quantity -= 1;
+    console.log(cloneGoods.quantity);
   }
 
   return (
     <View style={styles.container}>
       {/*LEFT*/}
       <View style={styles.leftContainer}>
-        <Text style={styles.label}>{goods.name}</Text>
+        <Text style={styles.label}>{cloneGoods.name}</Text>
         <TextInput
           style={styles.input}
           keyboardType='numeric'
           returnKeyType="go"
           onChangeText={onChangeQuantityInput}
-          value={String(goods.quantity)}
+          value={String(cloneGoods.quantity)}
 
         />
       </View>
@@ -93,8 +110,8 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   input: {
-    height: 40,
-    width: 50,
+    // height: 40,
+    width: 70,
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5
   }
