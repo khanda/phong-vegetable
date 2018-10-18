@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ScrollView, StyleSheet, Text, View} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
 
 

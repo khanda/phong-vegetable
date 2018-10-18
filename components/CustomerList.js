@@ -1,6 +1,6 @@
 import React from 'react'
-import {List, ListItem} from 'react-native-elements'
-import {Button, ScrollView, StyleSheet, View, TouchableOpacity} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {Container, Header, Content, Button, Text, List, ListItem, Left, Right, Icon, Thumbnail, Body} from 'native-base';
 
 class CustomerList extends React.Component {
 
@@ -34,19 +34,25 @@ class CustomerList extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
-          <List>
-            {
-              customers.map((item) => (
-                <TouchableOpacity key={item._id} onPress={() => this.onPressItem(item)}>
-                  <ListItem
-                    title={item.name}
-                    roundAvatar
-                    avatar={{uri: item.avatar}}
-                  />
-                </TouchableOpacity>
-              ))
-            }
-          </List>
+          <Container>
+            <Content>
+              <List dataArray={customers} renderRow={(item) =>
+                <ListItem avatar key={item._id} onPress={() => this.onPressItem(item)}>
+                  <Left>
+                    <Thumbnail small source={{uri: item.avatar}}/>
+                  </Left>
+                  <Body>
+                  <Text>{item.name}</Text>
+                  <Text note></Text>
+                  </Body>
+                  <Right>
+                    <Icon active name="arrow-forward"/>
+                  </Right>
+                </ListItem>
+              }>
+              </List>
+            </Content>
+          </Container>
         </ScrollView>
       </View>
     )
@@ -55,7 +61,7 @@ class CustomerList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 5
+
   }
 });
 
