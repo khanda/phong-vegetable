@@ -1,8 +1,10 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import moment from 'moment'
 import {Button, ListItem} from 'react-native-elements'
 import t from 'tcomb-form-native';
+import {getDailyBill} from "../actions";
 
 const DailyBillFilter = t.struct({
   date: t.Date
@@ -24,38 +26,33 @@ const options = {
 };
 const Form = t.form.Form;
 
-const DailyBill = ({navigation, customer}) => {
-  this.state = {
-    filter: {
-      date: moment().add(-1, 'day').toDate()
-    },
-    bill: {}
+const DailyBillFilterFormContainer = ({customer, dispatch}) => {
+
+  var filter = {
+    date: moment().add(-1, 'day').toDate()
   };
 
-
   function onPressView() {
-    console.log('on press');
+    const value = _form.getValue();
+    if (!value || !value.date) return;
+    dispatch(getDailyBill(value.date));
   }
-
-  console.log(customer);
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.container}>
-        <ListItem
-          key={customer._id}
-          title={customer.name}
-          roundAvatar
-          avatar={{uri: customer.avatar}}
-          rightIcon={{name: 'chevron-right', color: 'transparent'}}
-        />
-        <Form ref={c => this._form = c}
-              value={this.state.filter}
-              type={DailyBillFilter}
-              options={options}
-        />
-        <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
-      </ScrollView>
+      <ListItem
+        key={customer._id}
+        title={customer.name}
+        roundAvatar
+        avatar={{uri: customer.avatar}}
+        rightIcon={{name: 'chevron-right', color: 'transparent'}}
+      />
+      <Form ref={c => this._form = c}
+            value={filter}
+            type={DailyBillFilter}
+            options={options}
+      />
+      <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
     </View>
   )
 };
@@ -66,5 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-
-export default DailyBill
+export default connect()(DailyBillFilterFormContainer)

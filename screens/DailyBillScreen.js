@@ -1,7 +1,8 @@
 import React from 'react';
 import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WebBrowser} from 'expo';
-import DailyBill from "../components/DailyBill";
+import DailyBillListContainer from "../containers/DailyBillListContainer";
+import DailyBillFilterFormContainer from "../containers/DailyBillFilterFormContainer";
 
 class DailyBillScreen extends React.Component {
   static navigationOptions = {
@@ -20,7 +21,8 @@ class DailyBillScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <DailyBill navigation={this.props.navigation} customer={customer}/>
+        <DailyBillFilterFormContainer customer={customer}/>
+        <DailyBillListContainer/>
       </View>
     );
   }

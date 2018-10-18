@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Todo from './Todo'
-import {View, StyleSheet} from 'react-native'
-import {List, ListItem} from 'react-native-elements'
+import {StyleSheet, View} from 'react-native'
+import {List} from 'react-native-elements'
 
 const TodoList = ({todos, toggleTodo}) => (
   <View style={styles.container}>
