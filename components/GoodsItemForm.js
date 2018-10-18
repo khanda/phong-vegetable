@@ -35,7 +35,7 @@ class GoodsItemForm extends React.Component {
   onChangeQuantityInput(value) {
     this.hideError();
     if (!this.isValid(value)) {
-      this.showError()
+      this.showError();
       return;
     }
     this.props.goods.quantity = value;
@@ -43,12 +43,16 @@ class GoodsItemForm extends React.Component {
 
   increase() {
     if (this.props.goods.quantity === MAX_QUANTITY) return;
-    this.state.goods.quantity += 1;
+    const currentGoods = this.state.goods;
+    currentGoods.quantity += 1;
+    this.setState({goods: currentGoods});
   }
 
   decrease() {
     if (this.state.goods.quantity === 0) return;
-    this.state.goods.quantity -= 1;
+    const currentGoods = this.state.goods;
+    currentGoods.quantity -= 1;
+    this.setState({goods: currentGoods});
   }
 
   render() {
@@ -90,7 +94,7 @@ class GoodsItemForm extends React.Component {
         {
           this.state.error ? (
             <View style={styles.error}>
-              <Text style={styles.errorMsg}>khong hop le</Text>
+              <Text style={styles.errorMsg}>Số lượng là số lớn hơn hoặc bằng 0</Text>
             </View>
           ) : null
         }
@@ -110,7 +114,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10
+    padding: 10,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5
   },
   leftContainer: {
     flexGrow: 1,
