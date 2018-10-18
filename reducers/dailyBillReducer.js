@@ -10,6 +10,9 @@ const dailyBillReducer = (state = initState, action) => {
         {_id: 2, name: 'Tỏi', quantity: 2},
         {_id: 3, name: 'Bí', quantity: 3},
         {_id: 4, name: 'Ngô', quantity: 33},
+        {_id: 5, name: 'Su su', quantity: 33},
+        {_id: 6, name: 'Mùi', quantity: 33},
+        {_id: 7, name: 'Cà rốt', quantity: 33},
       ];
 
       return {

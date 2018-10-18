@@ -21,13 +21,16 @@ class DailyBillScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <DailyBillFilterFormContainer customer={customer}/>
-        <DailyBillListContainer/>
+        <ScrollView style={styles.container}>
+          <DailyBillFilterFormContainer customer={customer}/>
+          <DailyBillListContainer/>
+        </ScrollView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+});
 
 export default DailyBillScreen
