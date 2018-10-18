@@ -1,74 +1,83 @@
 import React from 'react'
 import {Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {Icon} from 'react-native-elements'
-import _ from 'lodash'
 
 const MAX_QUANTITY = 1000;
-const GoodsItemForm = ({goods}) => {
 
-  var cloneGoods = _.clone(goods);
-  console.log(cloneGoods);
+class GoodsItemForm extends React.Component {
+  constructor(props) {
+    super(props);
 
-  function isValid(value) {
+    this.state = {
+      goods: props.goods
+    };
+    this.onChangeQuantityInput = this.onChangeQuantityInput.bind(this);
+    this.increase = this.increase.bind(this);
+    this.decrease = this.decrease.bind(this);
+  }
+
+  isValid(value) {
     if (!value) return false;
     const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
     return positiveIntegerRegex.test(value);
   }
 
-  function onChangeQuantityInput(value) {
-    if (!isValid(value)) return;
+  onChangeQuantityInput(value) {
+    if (!this.isValid(value)) return;
     console.log(value);
-    cloneGoods.quantity = value;
+    this.props.goods.quantity = value;
   }
 
-  function increase() {
-    if (cloneGoods.quantity === MAX_QUANTITY) return;
-    cloneGoods.quantity += 1;
-    console.log(cloneGoods.quantity);
+  increase() {
+    if (this.props.goods.quantity === MAX_QUANTITY) return;
+    this.state.goods.quantity += 1;
+    console.log(this.state.goods.quantity);
   }
 
-  function decrease() {
-    if (cloneGoods.quantity === 0) return;
-    cloneGoods.quantity -= 1;
-    console.log(cloneGoods.quantity);
+  decrease() {
+    if (this.state.goods.quantity === 0) return;
+    this.state.goods.quantity -= 1;
+    console.log(this.state.goods.quantity);
   }
 
-  return (
-    <View style={styles.container}>
-      {/*LEFT*/}
-      <View style={styles.leftContainer}>
-        <Text style={styles.label}>{cloneGoods.name}</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType='numeric'
-          returnKeyType="go"
-          onChangeText={onChangeQuantityInput}
-          value={String(cloneGoods.quantity)}
+  render() {
+    return (
+      <View style={styles.container}>
+        {/*LEFT*/}
+        <View style={styles.leftContainer}>
+          <Text style={styles.label}>{this.state.goods.name}</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType='numeric'
+            returnKeyType="go"
+            onChangeText={this.onChangeQuantityInput}
+            value={String(this.state.goods.quantity)}
 
-        />
-      </View>
-      {/*RIGHT*/}
-      <View style={styles.rightContainer}>
-        <TouchableOpacity style={styles.plusBtn} onPress={increase}>
-          <Icon
-            name='plus'
-            size={26}
-            type='font-awesome'
-            color='white'
           />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.minusBtn} onPress={decrease}>
-          <Icon
-            name='minus'
-            size={26}
-            type='font-awesome'
-            color='white'
-          />
-        </TouchableOpacity>
+        </View>
+        {/*RIGHT*/}
+        <View style={styles.rightContainer}>
+          <TouchableOpacity style={styles.plusBtn} onPress={this.increase}>
+            <Icon
+              name='plus'
+              size={26}
+              type='font-awesome'
+              color='white'
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.minusBtn} onPress={this.decrease}>
+            <Icon
+              name='minus'
+              size={26}
+              type='font-awesome'
+              color='white'
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  )
-};
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
