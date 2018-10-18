@@ -8,6 +8,14 @@ const GoodsItemForm = ({goods}) => {
     console.log(value);
   }
 
+  function increase() {
+    console.log('increase');
+  }
+
+  function decrease() {
+    console.log('decrease');
+  }
+
   return (
     <View style={styles.container}>
       {/*LEFT*/}
@@ -24,7 +32,7 @@ const GoodsItemForm = ({goods}) => {
       </View>
       {/*RIGHT*/}
       <View style={styles.rightContainer}>
-        <TouchableOpacity style={styles.plusBtn} onPress={() => console.log('hello')}>
+        <TouchableOpacity style={styles.plusBtn} onPress={increase}>
           <Icon
             name='plus'
             size={26}
@@ -32,7 +40,7 @@ const GoodsItemForm = ({goods}) => {
             color='white'
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.minusBtn} onPress={() => console.log('hello')}>
+        <TouchableOpacity style={styles.minusBtn} onPress={decrease}>
           <Icon
             name='minus'
             size={26}
