@@ -1,8 +1,4 @@
-const initialState = {
-  dailyBillItems: []
-};
-
-const dailyBillReducer = (state = initialState, action) => {
+const dailyBillReducer = (state = [], action) => {
   switch (action.type) {
     case 'DAILY_BILL_CHANGED':
       var items = [
@@ -12,11 +8,9 @@ const dailyBillReducer = (state = initialState, action) => {
         {_id: 4, name: 'Ngô', quantity: 33},
       ];
 
-      console.log(action.date);
-      console.log(items);
-      return {
-        dailyBillItems: items
-      };
+      console.log(state);
+
+      return items;
     default:
       return state
   }

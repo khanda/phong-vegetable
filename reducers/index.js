@@ -6,5 +6,5 @@ import dailyBillReducer from "./dailyBillReducer";
 export default combineReducers({
   todos,
   visibilityFilter,
-  dailyBillReducer,
+  dailyBillReducer
 })

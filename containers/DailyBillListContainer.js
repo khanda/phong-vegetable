@@ -5,13 +5,14 @@ const DailyBillListContainer = (dailyBillItems) => {
   return dailyBillItems || [];
 };
 
-const mapStateToProps = state => ({
-  dailyBillItems: state.todos 
-});
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    dailyBillItems: state.dailyBillReducer
+  }
+};
 
-const mapDispatchToProps = dispatch => ({
-
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
