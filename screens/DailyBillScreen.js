@@ -21,7 +21,7 @@ class DailyBillScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <DailyBillFilterFormContainer customer={customer}/>
           <DailyBillListContainer/>
         </ScrollView>
@@ -31,6 +31,12 @@ class DailyBillScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff'
+  },
+  contentContainer: {
+    // paddingVertical: 20
+  }
 });
 
 export default DailyBillScreen

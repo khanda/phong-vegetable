@@ -5,14 +5,17 @@ import moment from 'moment'
 import {Button, ListItem} from 'react-native-elements'
 import t from 'tcomb-form-native';
 import {getDailyBill} from "../actions";
+import globalStyles from "../globalStyles";
 
 const DailyBillFilter = t.struct({
   date: t.Date
 });
+
 const options = {
+  stylesheet: globalStyles.customDesign,
   fields: {
     date: {
-      label: 'Chọn ngày để xem nội dung hóa đơn',
+      label: 'Chọn ngày',
       error: 'Chỉ chọn ngày trong quá khứ',
       maximumDate: new Date(),
       mode: 'date',
@@ -47,19 +50,26 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
         avatar={{uri: customer.avatar}}
         rightIcon={{name: 'chevron-right', color: 'transparent'}}
       />
-      <Form ref={c => this._form = c}
-            value={filter}
-            type={DailyBillFilter}
-            options={options}
-      />
-      <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
+      <View style={styles.form}>
+        <Form ref={c => this._form = c}
+              value={filter}
+              type={DailyBillFilter}
+              options={options}
+
+        />
+        <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
+      </View>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 10
+    backgroundColor: '#fff',
+    marginBottom: 0
+  },
+  form: {
+    padding: 5
   }
 });
 
