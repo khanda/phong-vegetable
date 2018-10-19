@@ -34,25 +34,21 @@ class CustomerList extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
-          <Container>
-            <Content>
-              <List dataArray={customers} renderRow={(item) =>
-                <ListItem avatar key={item._id} onPress={() => this.onPressItem(item)}>
-                  <Left>
-                    <Thumbnail small source={{uri: item.avatar}}/>
-                  </Left>
-                  <Body>
-                  <Text>{item.name}</Text>
-                  <Text note></Text>
-                  </Body>
-                  <Right>
-                    <Icon active name="arrow-forward"/>
-                  </Right>
-                </ListItem>
-              }>
-              </List>
-            </Content>
-          </Container>
+          <List dataArray={customers} renderRow={(item) =>
+            <ListItem avatar key={item._id} onPress={() => this.onPressItem(item)}>
+              <Left>
+                <Thumbnail small source={{uri: item.avatar}}/>
+              </Left>
+              <Body>
+              <Text>{item.name}</Text>
+              <Text note></Text>
+              </Body>
+              <Right>
+                <Icon active name="arrow-forward"/>
+              </Right>
+            </ListItem>
+          }>
+          </List>
         </ScrollView>
       </View>
     )
@@ -61,7 +57,7 @@ class CustomerList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    backgroundColor: '#fff'
   }
 });
 

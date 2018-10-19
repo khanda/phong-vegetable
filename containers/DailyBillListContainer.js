@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import DailyBillList from "../components/DailyBillList";
+import {getBillByCustomer} from "../reducers/dailyBillReducer";
 
 const DailyBillListContainer = (dailyBillItems) => {
   return dailyBillItems || [];
@@ -7,7 +8,7 @@ const DailyBillListContainer = (dailyBillItems) => {
 
 const mapStateToProps = state => {
   return {
-    dailyBillItems: state.dailyBillReducer.items
+    dailyBillItems: getBillByCustomer(state, 0)
   }
 };
 

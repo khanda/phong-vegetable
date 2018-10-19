@@ -30,7 +30,7 @@ export const saveDailyBill = bill => ({
   type: 'SAVE_BILL',
   bill
 });
-export const changeDailyBillQuantity = billItem => ({
-  type: 'CHANGE_BILL_ITEM_QUANTITY',
+export const billItemChanged = billItem => ({
+  type: 'BILL_ITEM_CHANGED',
   billItem
 });
