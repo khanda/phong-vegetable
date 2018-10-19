@@ -7,8 +7,10 @@ const DailyBillListContainer = (dailyBillItems) => {
 };
 
 const mapStateToProps = state => {
+  var list = getBillByCustomer(state, 0);
+  console.log(list);
   return {
-    dailyBillItems: getBillByCustomer(state, 0)
+    dailyBillItems: list
   }
 };
 

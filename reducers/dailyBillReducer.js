@@ -49,8 +49,8 @@ const editingBill = (state = initState.editingBill, action) => {
   }
 };
 
-export const getBillByCustomer = (state, customerId) => state.bill || [];
-export const getEditingBillByCustomer = (state, customerId) => state.editingBill;
+export const getBillByCustomer = (state, customerId) => state.bill || initState.bill;
+export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initState.editingBill;
 
 
 const dailyBillReducer = (state = initState, action) => {
