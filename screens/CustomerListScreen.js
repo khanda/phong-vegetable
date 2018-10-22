@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {WebBrowser} from 'expo';
 import CustomerList from "../components/CustomerList";
+import CustomerListContainer from "../containers/CustomerListContainer";
 
 class CustomerListScreen extends React.Component {
   static navigationOptions = {
@@ -11,14 +12,12 @@ class CustomerListScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <CustomerList navigation={this.props.navigation}/>
+        <CustomerListContainer/>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 export default CustomerListScreen

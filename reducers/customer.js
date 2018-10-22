@@ -26,6 +26,7 @@ const customers = (state = initState.customers, action) => {
 const selectedCustomer = (state = initState.selectedCustomer, action) => {
   switch (action.type) {
     case 'SELECT_CUSTOMER':
+      console.log('select ', action._id);
       return action._id;
     default:
       return state

@@ -5,9 +5,9 @@ import AppNavigator from './navigation/AppNavigator';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import rootReducer from './reducers'
-import NavigationService from 'navigation/NavigationService';
+import NavigationService from "./navigation/NavigationService";
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
 
 export default class App extends React.Component {
   state = {
