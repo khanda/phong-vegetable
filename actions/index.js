@@ -30,7 +30,13 @@ export const saveDailyBill = bill => ({
   type: 'SAVE_BILL',
   bill
 });
+
 export const billItemChanged = billItem => ({
   type: 'BILL_ITEM_CHANGED',
   billItem
+});
+
+export const selectCustomer = _id => ({
+  type: 'SELECT_CUSTOMER',
+  _id
 });
