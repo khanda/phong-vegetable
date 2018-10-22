@@ -1,6 +1,6 @@
 import React from 'react'
-import {Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native'
-import {Icon} from 'react-native-elements'
+import {ScrollView, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native'
+import {Button, Text, Icon} from 'native-base';
 
 const MAX_QUANTITY = 1000;
 
@@ -72,22 +72,12 @@ class GoodsItemForm extends React.Component {
           </View>
           {/*RIGHT*/}
           <View style={styles.rightContainer}>
-            <TouchableOpacity style={styles.plusBtn} onPress={this.increase}>
-              <Icon
-                name='plus'
-                size={26}
-                type='font-awesome'
-                color='white'
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.minusBtn} onPress={this.decrease}>
-              <Icon
-                name='minus'
-                size={26}
-                type='font-awesome'
-                color='white'
-              />
-            </TouchableOpacity>
+            <Button small success onPress={this.increase}>
+              <Text>Tăng</Text>
+            </Button>
+            <Button small danger onPress={this.decrease}>
+              <Text>Giảm</Text>
+            </Button>
           </View>
         </View>
         {
