@@ -1,7 +1,19 @@
 var initialState = {
   loading: false,
   error: null,
-  bill: [],
+  bill: [
+    {_id: 1, name: 'Hành', quantity: 0},
+    {_id: 2, name: 'Tỏi', quantity: 0},
+    {_id: 3, name: 'Dưa chuột', quantity: 0},
+    {_id: 4, name: 'Cà rốt', quantity: 0},
+    {_id: 5, name: 'Cà tím', quantity: 0},
+    {_id: 6, name: 'Bí', quantity: 0},
+    {_id: 7, name: 'Khoai tây', quantity: 0},
+    {_id: 8, name: 'Mùi', quantity: 0},
+    {_id: 9, name: 'ớt', quantity: 0},
+    {_id: 10, name: 'Ngô', quantity: 0},
+    {_id: 11, name: 'Thì là', quantity: 0},
+    {_id: 12, name: 'Cam', quantity: 0},],
   editingBill: []
 };
 

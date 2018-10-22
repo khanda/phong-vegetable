@@ -6,6 +6,7 @@ import {getBillByCustomer} from "../reducers/dailyBillReducer";
 import {Container, Header, Content, Button, Text} from 'native-base';
 
 const BillFormContainer = ({bill}) => {
+  console.log(bill);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -15,7 +16,7 @@ const BillFormContainer = ({bill}) => {
           ))
         }
       </ScrollView>
-      <Button block success onPress={() => alert('123')}>
+      <Button full success onPress={() => alert('123')}>
         <Text>Lưu</Text>
       </Button>
 
