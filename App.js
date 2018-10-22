@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import rootReducer from './reducers'
+import NavigationService from 'navigation/NavigationService';
 
 const store = createStore(rootReducer)
 
@@ -27,7 +28,9 @@ export default class App extends React.Component {
         <Provider store={store}>
           <View style={styles.container}>
             {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-            <AppNavigator/>
+            <AppNavigator ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}/>
           </View>
         </Provider>
       );
