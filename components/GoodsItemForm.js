@@ -20,7 +20,6 @@ class GoodsItemForm extends React.Component {
   isValid(value) {
     if (!value) return false;
     const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
-    console.log(value);
     return value == 0 || positiveIntegerRegex.test(value);
   }
 

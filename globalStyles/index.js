@@ -7,7 +7,6 @@ customDesign.controlLabel.normal.fontSize = 13;
 customDesign.controlLabel.normal.fontWeight = "400";
 customDesign.controlLabel.normal.marginBottom = 3;
 // override globally the default stylesheet
-console.log('hehehe');
 
 // MATERIAL DESIGN
 const materialDesign = _.cloneDeep(t.form.Form.stylesheet);

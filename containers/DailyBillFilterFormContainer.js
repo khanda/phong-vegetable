@@ -1,45 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ScrollView, StyleSheet, Text, View} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
 import moment from 'moment'
-import {Button, ListItem} from 'react-native-elements'
-import t from 'tcomb-form-native';
+import {ListItem} from 'react-native-elements'
 import {getDailyBill} from "../actions";
-import globalStyles from "../globalStyles";
+import {Container, Content, DatePicker, Header, Text} from 'native-base';
 
-const DailyBillFilter = t.struct({
-  date: t.Date
-});
-
-const options = {
-  stylesheet: globalStyles.customDesign,
-  fields: {
-    date: {
-      label: 'Chọn ngày',
-      error: 'Chỉ chọn ngày trong quá khứ',
-      maximumDate: new Date(),
-      mode: 'date',
-      config: {
-        format: (date) => {
-          return moment(date).format('DD-MM-YYYY');
-        }
-      }
-    }
-  }
-};
-const Form = t.form.Form;
 
 const DailyBillFilterFormContainer = ({customer, dispatch}) => {
 
   var filter = {
-    date: moment().add(-1, 'day').toDate()
+    // date: moment().add(-1, 'day').toDate(),
+    date: new Date(),
   };
-
-  function onPressView() {
-    const value = _form.getValue();
-    if (!value || !value.date) return;
-    dispatch(getDailyBill(value.date));
-  }
 
   function getCustomer() {
     if (customer && customer._id) {
@@ -56,18 +29,32 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
     return null;
   }
 
+  function setDate(newDate) {
+    console.log(newDate);
+    filter.date = newDate;
+    dispatch(getDailyBill(filter.date));
+  }
+
   return (
     <View style={styles.container}>
       {getCustomer()}
 
       <View style={styles.form}>
-        <Form ref={c => this._form = c}
-              value={filter}
-              type={DailyBillFilter}
-              options={options}
 
+        <Text >Chọn ngày cần xem hóa đơn</Text>
+        <DatePicker
+          defaultDate={filter.date}
+          maximumDate={new Date()}
+          locale={"en"}
+          timeZoneOffsetInMinutes={undefined}
+          modalTransparent={false}
+          animationType={"fade"}
+          androidMode={"default"}
+          placeHolderText="chọn ngày"
+          textStyle={{color: "green"}}
+          placeHolderTextStyle={{color: "#d3d3d3"}}
+          onDateChange={setDate}
         />
-        <Button title="Xem" backgroundColor="green" onPress={onPressView}/>
       </View>
     </View>
   )
@@ -79,7 +66,9 @@ const styles = StyleSheet.create({
     marginBottom: 0
   },
   form: {
-    padding: 5
+    padding: 5,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'gray'
   }
 });
 

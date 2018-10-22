@@ -7,10 +7,7 @@ const CustomerList = ({customers, selectCustomer}) => {
     <View style={styles.container}>
       <ScrollView style={styles.container}>
         <List dataArray={customers} renderRow={(item) =>
-          <ListItem avatar key={item._id} onPress={() => {
-            console.log('clicked');
-            selectCustomer(item._id)
-          }}>
+          <ListItem avatar key={item._id} onPress={() => selectCustomer(item._id)}>
             <Left>
               <Thumbnail small source={{uri: item.avatar}}/>
             </Left>
