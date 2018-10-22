@@ -31,6 +31,7 @@
     "react-navigation": "^2.16.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "tcomb-form-native": "^0.6.20",
     "yup": "^0.26.6"
   },
