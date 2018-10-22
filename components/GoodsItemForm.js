@@ -1,95 +1,79 @@
 import React from 'react'
 import {ScrollView, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native'
-import {Button, Text, Icon} from 'native-base';
+import {Button, Icon, Text} from 'native-base';
 
 const MAX_QUANTITY = 1000;
 
-class GoodsItemForm extends React.Component {
-  constructor(props) {
-    super(props);
+const GoodsItemForm = ({goods, increase, decrease, changeQuantity}) => {
+  var error = null;
 
-    this.state = {
-      goods: props.goods,
-      error: false
-    };
-    this.onChangeQuantityInput = this.onChangeQuantityInput.bind(this);
-    this.increase = this.increase.bind(this);
-    this.decrease = this.decrease.bind(this);
-  }
-
-  isValid(value) {
+  function isValid(value) {
     if (!value) return false;
     const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
     return value == 0 || positiveIntegerRegex.test(value);
   }
 
-  hideError() {
-    this.setState({error: false});
+  function hideError() {
+    error = false;
   }
 
-  showError() {
-    this.setState({error: true});
+  function showError() {
+    error = true;
   }
 
-  onChangeQuantityInput(value) {
-    this.hideError();
-    if (!this.isValid(value)) {
-      this.showError();
+  function onChangeQuantityInput(value) {
+    hideError();
+    if (!isValid(value)) {
+      showError();
       return;
     }
-    this.props.goods.quantity = value;
+    changeQuantity(value);
   }
 
-  increase() {
-    if (this.props.goods.quantity === MAX_QUANTITY) return;
-    const currentGoods = this.state.goods;
-    currentGoods.quantity = Number(currentGoods.quantity) + 1;
-    this.setState({goods: currentGoods});
+  function increaseQuantity() {
+    if (goods.quantity === MAX_QUANTITY) return;
+    increase(goods._id)
   }
 
-  decrease() {
-    if (this.state.goods.quantity === 0) return;
-    const currentGoods = this.state.goods;
-    currentGoods.quantity = Number(currentGoods.quantity) + 1;
-    this.setState({goods: currentGoods});
+  function decreaseQuantity() {
+    if (goods.quantity === 0) return;
+    decrease(goods._id)
   }
 
-  render() {
-    return (
-      <View style={styles.colContainer}>
-        <View style={styles.rowContainer}>
-          {/*LEFT*/}
-          <View style={styles.leftContainer}>
-            <Text style={styles.label}>{this.state.goods.name}</Text>
-            <TextInput
-              style={styles.input}
-              keyboardType='numeric'
-              onChangeText={this.onChangeQuantityInput}
-              value={String(this.state.goods.quantity)}
+  return (
+    <View style={styles.colContainer}>
+      <View style={styles.rowContainer}>
+        {/*LEFT*/}
+        <View style={styles.leftContainer}>
+          <Text style={styles.label}>{goods.name}</Text>
+          <TextInput
+            style={styles.input}
+            keyboardType='numeric'
+            onChangeText={onChangeQuantityInput}
+            value={String(goods.quantity)}
 
-            />
-          </View>
-          {/*RIGHT*/}
-          <View style={styles.rightContainer}>
-            <Button small success onPress={this.increase}>
-              <Text>Tăng</Text>
-            </Button>
-            <Button small danger onPress={this.decrease}>
-              <Text>Giảm</Text>
-            </Button>
-          </View>
+          />
         </View>
-        {
-          this.state.error ? (
-            <View style={styles.error}>
-              <Text style={styles.errorMsg}>Số lượng là số lớn hơn hoặc bằng 0</Text>
-            </View>
-          ) : null
-        }
-
+        {/*RIGHT*/}
+        <View style={styles.rightContainer}>
+          <Button small success onPress={increaseQuantity}>
+            <Text>Tăng</Text>
+          </Button>
+          <Button small danger onPress={decreaseQuantity}>
+            <Text>Giảm</Text>
+          </Button>
+        </View>
       </View>
-    )
-  }
+      {
+        error ? (
+          <View style={styles.error}>
+            <Text style={styles.errorMsg}>Số lượng là số lớn hơn hoặc bằng 0</Text>
+          </View>
+        ) : null
+      }
+
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

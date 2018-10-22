@@ -30,7 +30,6 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
   }
 
   function setDate(newDate) {
-    console.log(newDate);
     filter.date = newDate;
     dispatch(getDailyBill(filter.date));
   }

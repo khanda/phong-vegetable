@@ -4,15 +4,20 @@ import {ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
 import {getBillByCustomer} from "../reducers/dailyBill";
 import {Container, Header, Content, Button, Text} from 'native-base';
+import {changeBillItem, increaseItem, toggleTodo} from "../actions";
 
-const BillFormContainer = ({bill}) => {
-  console.log(bill);
+const BillFormContainer = ({bill, increase, decrease, changeQuantity}) => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {
           bill.map((goods) => (
-            <GoodsItemForm goods={goods} key={goods._id}/>
+            <GoodsItemForm key={goods._id}
+                           goods={goods}
+                           increase={increase}
+                           decrease={decrease}
+                           changeQuantity={changeQuantity}
+            />
           ))
         }
       </ScrollView>
@@ -37,5 +42,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   bill: getBillByCustomer(state, 0)
 });
-
-export default connect(mapStateToProps, null)(BillFormContainer)
+const mapDispatchToProps = dispatch => ({
+  increase: _id => dispatch(increaseItem(_id, 1)),
+  decrease: _id => dispatch(increaseItem(_id, -1)),
+  changeQuantity: (_id, value) => dispatch(changeBillItem(_id, value)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(BillFormContainer)
