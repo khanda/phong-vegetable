@@ -1,3 +1,5 @@
+export * from './bill';
+
 let nextTodoId = 0;
 export const addTodo = text => ({
   type: 'ADD_TODO',
@@ -46,3 +48,4 @@ export const goToCustomer = _id => ({
   type: 'GO_TO_CUSTOMER',
   _id
 });
+
