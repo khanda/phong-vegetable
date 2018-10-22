@@ -41,15 +41,25 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
     dispatch(getDailyBill(value.date));
   }
 
+  function getCustomer() {
+    if (customer && customer._id) {
+      return (
+        <ListItem
+          key={customer._id}
+          title={customer.name}
+          roundAvatar
+          avatar={{uri: customer.avatar}}
+          rightIcon={{name: 'chevron-right', color: 'transparent'}}
+        />
+      )
+    }
+    return null;
+  }
+
   return (
     <View style={styles.container}>
-      <ListItem
-        key={customer._id}
-        title={customer.name}
-        roundAvatar
-        avatar={{uri: customer.avatar}}
-        rightIcon={{name: 'chevron-right', color: 'transparent'}}
-      />
+      {getCustomer()}
+
       <View style={styles.form}>
         <Form ref={c => this._form = c}
               value={filter}

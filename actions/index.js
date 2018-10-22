@@ -40,3 +40,9 @@ export const selectCustomer = _id => ({
   type: 'SELECT_CUSTOMER',
   _id
 });
+
+
+export const goToCustomer = _id => ({
+  type: 'GO_TO_CUSTOMER',
+  _id
+});

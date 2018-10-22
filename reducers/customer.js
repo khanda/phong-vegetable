@@ -1,3 +1,5 @@
+import NavigationService from "../navigation/NavigationService";
+
 var initState = {
   customers: [
     {_id: 1, name: 'John', avatar: 'http://parus.ua/files/image/12345/Auto/1661.JPG'},
@@ -26,7 +28,7 @@ const customers = (state = initState.customers, action) => {
 const selectedCustomer = (state = initState.selectedCustomer, action) => {
   switch (action.type) {
     case 'SELECT_CUSTOMER':
-      console.log('select ', action._id);
+      NavigationService.navigate('DailyBill');
       return action._id;
     default:
       return state

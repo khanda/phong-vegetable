@@ -2,8 +2,7 @@ import React from 'react'
 import {StyleSheet, View, ScrollView} from 'react-native'
 import {List, ListItem} from 'react-native-elements'
 
-const DailyBillList = ({dailyBillItems}) => {
-  console.log('dailyBillItems: ', dailyBillItems);
+const DailyBill = ({dailyBillItems}) => {
   return (
     <View style={styles.container}>
       <List>
@@ -30,4 +29,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DailyBillList
+export default DailyBill

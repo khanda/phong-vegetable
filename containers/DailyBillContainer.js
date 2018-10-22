@@ -1,8 +1,8 @@
 import {connect} from 'react-redux'
-import DailyBillList from "../components/DailyBillList";
+import DailyBill from "../components/DailyBill";
 import {getBillByCustomer} from "../reducers/dailyBillReducer";
 
-const DailyBillListContainer = (dailyBillItems) => {
+const DailyBillContainer = (dailyBillItems) => {
   return dailyBillItems || [];
 };
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => ({});
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DailyBillList)
+)(DailyBill)
