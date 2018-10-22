@@ -43,14 +43,14 @@ class GoodsItemForm extends React.Component {
   increase() {
     if (this.props.goods.quantity === MAX_QUANTITY) return;
     const currentGoods = this.state.goods;
-    currentGoods.quantity += 1;
+    currentGoods.quantity = Number(currentGoods.quantity) + 1;
     this.setState({goods: currentGoods});
   }
 
   decrease() {
     if (this.state.goods.quantity === 0) return;
     const currentGoods = this.state.goods;
-    currentGoods.quantity -= 1;
+    currentGoods.quantity = Number(currentGoods.quantity) + 1;
     this.setState({goods: currentGoods});
   }
 
@@ -64,7 +64,6 @@ class GoodsItemForm extends React.Component {
             <TextInput
               style={styles.input}
               keyboardType='numeric'
-              returnKeyType="go"
               onChangeText={this.onChangeQuantityInput}
               value={String(this.state.goods.quantity)}
 
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
     // height: 40,
     width: 70,
     borderBottomColor: 'gray',
-    borderBottomWidth: 0.5
+    borderBottomWidth: 0.3
   },
   error: {
     paddingLeft: 10
