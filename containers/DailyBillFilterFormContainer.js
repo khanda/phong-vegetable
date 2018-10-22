@@ -41,11 +41,9 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
 
       <View style={styles.form}>
 
-        <Text >Chọn ngày cần xem hóa đơn</Text>
+        <Text>Chọn ngày cần xem hóa đơn</Text>
         <DatePicker
-          defaultDate={filter.date}
-          maximumDate={new Date()}
-          locale={"en"}
+          locale={"vi"}
           timeZoneOffsetInMinutes={undefined}
           modalTransparent={false}
           animationType={"fade"}

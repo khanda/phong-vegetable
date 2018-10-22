@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import DailyBill from "../components/DailyBill";
-import {getBillByCustomer} from "../reducers/dailyBillReducer";
+import {getBillByCustomer} from "../reducers/dailyBill";
 
 const DailyBillContainer = (dailyBillItems) => {
   return dailyBillItems || [];

@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
-import {getBillByCustomer} from "../reducers/dailyBillReducer";
+import {getBillByCustomer} from "../reducers/dailyBill";
 import {Container, Header, Content, Button, Text} from 'native-base';
 
 const BillFormContainer = ({bill}) => {

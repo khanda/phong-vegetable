@@ -45,3 +45,7 @@ const addBillFailure = error => ({
     error
   }
 });
+export const changeBillItem = _id => ({
+  type: 'CHANGE_BILL_ITEM',
+  _id
+});
