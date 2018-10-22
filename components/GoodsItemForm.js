@@ -96,16 +96,16 @@ class GoodsItemForm extends React.Component {
 const styles = StyleSheet.create({
   colContainer: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5
   },
   rowContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 0.5
+    padding: 10
   },
   leftContainer: {
     flexGrow: 1,
