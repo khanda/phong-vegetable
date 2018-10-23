@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import NavigationService from "../navigation/NavigationService";
 
 const initBill = [
   {_id: 1, name: 'Hành', quantity: 0},
@@ -36,21 +37,25 @@ var initialState = {
   editingBill: _.clone(initBill)
 };
 
-export default function todosReducer(state = initialState, action) {
+export default function dailyBillReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_BILL_STARTED':
+      console.log('ADD_BILL_STARTED');
       return {
         ...state,
         loading: true
       };
     case 'ADD_BILL_SUCCESS':
+      console.log('ADD_BILL_SUCCESS');
+      NavigationService.navigate('DailyBill');
       return {
         ...state,
         loading: false,
         error: null,
-        todos: [...state.todos, action.payload]
+        editingBill: initBill
       };
     case 'ADD_BILL_FAILURE':
+      console.log('ADD_BILL_FAILURE');
       return {
         ...state,
         loading: false,

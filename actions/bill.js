@@ -1,16 +1,14 @@
 import DB from "../DB";
 
-export const addBill = ({bill, userId}) => {
+export const addBill = (bill, customerId) => {
   return dispatch => {
     dispatch(addBillStarted());
     // console.log('current state:', getState());
 
     DB.todos.add(bill, function (added_data) {
-      console.log(added_data);
       setTimeout(() => {
         dispatch(addBillSuccess(added_data));
       }, 2500);
-
     })
 
     // axios

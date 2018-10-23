@@ -10,13 +10,7 @@ class BillFormScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Tạo hóa đơn',
-      headerRight: (
-        <Button
-          onPress={() => alert('Lưu tạm')}
-          title="Lưu"
-        />
-      )
+      title: 'Tạo hóa đơn'
     }
   };
 
@@ -25,7 +19,7 @@ class BillFormScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-        <BillFormContainer/>
+          <BillFormContainer/>
         </ScrollView>
       </View>
     );
