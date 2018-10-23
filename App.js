@@ -5,6 +5,7 @@ import AppNavigator from './navigation/AppNavigator';
 import {Provider} from 'react-redux'
 import NavigationService from "./navigation/NavigationService";
 import store from "./store";
+import {Root} from "native-base";
 
 
 export default class App extends React.Component {
@@ -24,12 +25,14 @@ export default class App extends React.Component {
     } else {
       return (
         <Provider store={store}>
-          <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
-            <AppNavigator ref={navigatorRef => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}/>
-          </View>
+          <Root>
+            <View style={styles.container}>
+              {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
+              <AppNavigator ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}/>
+            </View>
+          </Root>
         </Provider>
       );
     }
