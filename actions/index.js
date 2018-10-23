@@ -1,4 +1,5 @@
 export * from './bill';
+export * from './customer';
 
 let nextTodoId = 0;
 export const addTodo = text => ({
@@ -27,25 +28,3 @@ export const getDailyBill = date => ({
   type: 'DAILY_BILL_CHANGED',
   date
 });
-
-export const saveDailyBill = bill => ({
-  type: 'SAVE_BILL',
-  bill
-});
-
-export const billItemChanged = billItem => ({
-  type: 'BILL_ITEM_CHANGED',
-  billItem
-});
-
-export const selectCustomer = _id => ({
-  type: 'SELECT_CUSTOMER',
-  _id
-});
-
-
-export const goToCustomer = _id => ({
-  type: 'GO_TO_CUSTOMER',
-  _id
-});
-

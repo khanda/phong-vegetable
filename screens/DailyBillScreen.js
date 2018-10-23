@@ -30,7 +30,6 @@ class DailyBillScreen extends React.Component {
       name: name,
       avatar: avatar
     };
-
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>

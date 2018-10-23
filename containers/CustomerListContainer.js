@@ -3,7 +3,6 @@ import {getCustomers} from "../reducers/customer";
 import CustomerList from "../components/CustomerList";
 import {selectCustomer} from "../actions";
 
-
 const mapStateToProps = state => {
   return {
     customers: getCustomers(state)

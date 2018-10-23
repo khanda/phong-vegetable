@@ -1,6 +1,6 @@
 import NavigationService from "../navigation/NavigationService";
 
-var initState = {
+var initialState = {
   customers: [
     {_id: 1, name: 'John', avatar: 'http://parus.ua/files/image/12345/Auto/1661.JPG'},
     {_id: 2, name: 'Amy Farha', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'},
@@ -18,35 +18,17 @@ var initState = {
   selectedCustomer: null
 };
 
-const customers = (state = initState.customers, action) => {
+
+export default function customerReducer(state = initialState, action) {
   switch (action.type) {
+    case 'SELECT_CUSTOMER_START':
+      NavigationService.navigate('DailyBill', state.customers[action._id]);
+      return state;
+
     default:
-      return state
+      return state;
   }
-};
+}
 
-const selectedCustomer = (state = initState.selectedCustomer, action) => {
-  switch (action.type) {
-    case 'SELECT_CUSTOMER':
-      NavigationService.navigate('DailyBill');
-      return action._id;
-    default:
-      return state
-  }
-};
-
-export const getCustomers = (state) => state.customers || initState.customers;
-export const getSelectedCustomer = (state) => state.selectedCustomer || initState.selectedCustomer;
-
-
-const customerReducer = (state = initState, action) => {
-  switch (action.type) {
-    default:
-      return {
-        customers: customers(state.customers, action),
-        selectedCustomer: selectedCustomer(state.selectedCustomer, action),
-      }
-  }
-};
-
-export default customerReducer
+export const getCustomers = (state) => state.customers || initialState.customers;
+export const getSelectedCustomer = (state) => state.selectedCustomer || initialState.selectedCustomer;
