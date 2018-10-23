@@ -59,22 +59,21 @@ export default function todosReducer(state = initialState, action) {
     case 'CHANGE_BILL_ITEM':
       return state.editingBill.map(billItem =>
         (billItem._id === action._id)
-          ? {...state, editingBill: {...billItem, quantity: action.value}}
+          ? {...state, editingBill: {...state.editingBill, quantity: action.value}}
           : state
       );
 
     case 'INCREASE_BILL_ITEM':
-      console.log(state.editingBill);
-      return state.editingBill.map(billItem => {
-          const currentQuantity = billItem.quantity;
-          if (billItem._id === action._id)
-            return {
-              ...state,
-              editingBill: {...billItem, quantity: Number(currentQuantity) + Number(action.intValue)}
-            };
-          return state;
+      var cloneState = _.clone(state);
+
+      cloneState.editingBill.forEach(function (item) {
+        if (item._id == action._id) {
+          item.quantity = Number(item.quantity) + Number(action.intValue);
         }
-      );
+      });
+      console.log(cloneState);
+      return cloneState;
+
     default:
       return state;
   }
