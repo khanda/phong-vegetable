@@ -64,7 +64,6 @@ export default function todosReducer(state = initialState, action) {
           item.quantity = Number(action.value);
         }
       });
-      console.log(cloneState.editingBill);
       return cloneState;
 
     case 'INCREASE_BILL_ITEM':
