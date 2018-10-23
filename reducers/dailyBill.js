@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import NavigationService from "../navigation/NavigationService";
-import { Toast} from 'native-base';
+import {Toast} from 'native-base';
 
 const initBill = [
   {_id: 1, name: 'Hành', quantity: 0},
@@ -41,6 +41,7 @@ var initialState = {
 export default function dailyBillReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_BILL_STARTED':
+      console.log('ADD_BILL_STARTED');
       return {
         ...state,
         loading: true
@@ -94,4 +95,4 @@ export default function dailyBillReducer(state = initialState, action) {
 
 export const getBillByCustomer = (state, customerId) => state.bill || initialState.bill;
 export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
-
+export const isLoading = (state) => state.dailyBillReducer.loading || false;

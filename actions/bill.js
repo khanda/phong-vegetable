@@ -1,9 +1,10 @@
 import DB from "../DB";
 
 export const addBill = (bill, customerId) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(addBillStarted());
-    // console.log('current state:', getState());
+    // var state = getState();
+    // console.log('current state:', state);
 
     DB.todos.add(bill, function (added_data) {
       setTimeout(() => {

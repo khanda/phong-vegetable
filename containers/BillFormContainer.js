@@ -2,12 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
-import {getEditingBillByCustomer} from "../reducers/dailyBill";
-import {Button, Container, Content, Header, Text} from 'native-base';
+import {getEditingBillByCustomer, isLoading} from "../reducers/dailyBill";
+import {Button, Container, Content, Header, Text, Spinner} from 'native-base';
 import {addBill, changeBillItem, increaseItem} from "../actions";
 import {KeyboardAvoidingView} from 'react-native';
 
-const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) => {
+const BillFormContainer = ({bill, isLoading, increase, decrease, changeQuantity, addBill}) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -31,6 +31,9 @@ const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) 
 
       <Button full success onPress={() => addBill(bill, null)}>
         <Text>Lưu</Text>
+        {isLoading && <Spinner color='white'/>
+        }
+
       </Button>
     </KeyboardAvoidingView>
   )
@@ -59,7 +62,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    bill: getEditingBillByCustomer(state, 0)
+    bill: getEditingBillByCustomer(state, 0),
+    isLoading: isLoading(state)
   }
 };
 const mapDispatchToProps = dispatch => ({
