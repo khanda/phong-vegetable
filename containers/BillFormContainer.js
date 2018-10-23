@@ -5,10 +5,11 @@ import GoodsItemForm from "../components/GoodsItemForm";
 import {getEditingBillByCustomer} from "../reducers/dailyBill";
 import {Button, Container, Content, Header, Text} from 'native-base';
 import {addBill, changeBillItem, increaseItem} from "../actions";
+import {KeyboardAvoidingView} from 'react-native';
 
 const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) => {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <View style={styles.helpContainer}>
           <Text style={styles.helpText}>
@@ -31,7 +32,7 @@ const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) 
       <Button full success onPress={() => addBill(bill, null)}>
         <Text>Lưu</Text>
       </Button>
-    </View>
+    </KeyboardAvoidingView>
   )
 };
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   contentContainer: {
-    paddingVertical: 5
+    paddingBottom: 20
   },
   helpContainer: {
     borderBottomWidth: 0.5,
