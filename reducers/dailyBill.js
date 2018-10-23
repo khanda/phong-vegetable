@@ -41,7 +41,6 @@ var initialState = {
 export default function dailyBillReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_BILL_STARTED':
-      console.log('ADD_BILL_STARTED');
       return {
         ...state,
         loading: true
@@ -50,7 +49,8 @@ export default function dailyBillReducer(state = initialState, action) {
       Toast.show({
         text: 'Thành công',
         buttonText: 'Ok',
-        duration: 3000
+        duration: 10000,
+        type: 'success'
       });
       NavigationService.navigate('DailyBill');
       return {
@@ -62,7 +62,8 @@ export default function dailyBillReducer(state = initialState, action) {
     case 'ADD_BILL_FAILURE':
       Toast.show({
         text: 'Xảy ra lỗi',
-        duration: 10000
+        duration: 10000,
+        type: 'danger'
       });
       return {
         ...state,

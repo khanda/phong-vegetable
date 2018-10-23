@@ -4,12 +4,8 @@ export const addBill = (bill, customerId) => {
   return (dispatch, getState) => {
     dispatch(addBillStarted());
     // var state = getState();
-    // console.log('current state:', state);
-
     DB.todos.add(bill, function (added_data) {
-      setTimeout(() => {
-        dispatch(addBillSuccess(added_data));
-      }, 2500);
+      dispatch(addBillSuccess(added_data));
     })
 
     // axios
