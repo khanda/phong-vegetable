@@ -12,8 +12,6 @@ class GoodsItemForm extends React.Component {
       error: null,
       goods: props.goods
     };
-    console.log('props:', props);
-    console.log('state:', this.state);
     this.onChangeQuantityInput = this.onChangeQuantityInput.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
@@ -30,7 +28,7 @@ class GoodsItemForm extends React.Component {
   hideError() {
     this.setState({
       ...this.state,
-      error: false
+      error: true
     })
   }
 
@@ -47,11 +45,14 @@ class GoodsItemForm extends React.Component {
       this.showError();
       return;
     }
-    this.props.changeQuantity(value);
+    console.log('pass validation');
+    var newGoods = _.clone(this.state.goods);
+    newGoods.quantity = Number(value);
+    this.setState({...this.state, goods: newGoods});
+    this.props.changeQuantity(newGoods._id, value);
   }
 
   increaseQuantity() {
-    console.log(this.state);
     if (this.state.goods.quantity === MAX_QUANTITY) return;
     var newGoods = _.clone(this.state.goods);
     newGoods.quantity = Number(this.state.goods.quantity) + 1;

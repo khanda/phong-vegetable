@@ -7,7 +7,6 @@ import {Button, Container, Content, Header, Text} from 'native-base';
 import {changeBillItem, increaseItem} from "../actions";
 
 const BillFormContainer = ({bill, increase, decrease, changeQuantity}) => {
-  console.log(bill);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -39,12 +38,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  var bill = getEditingBillByCustomer(state, 0);
-  console.log(bill);
   return {
-    bill: bill
+    bill: getEditingBillByCustomer(state, 0)
   }
-
 };
 const mapDispatchToProps = dispatch => ({
   increase: _id => dispatch(increaseItem(_id, 1)),
