@@ -18,9 +18,7 @@ class BillFormScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainer}>
-          <BillFormContainer/>
-        </ScrollView>
+        <BillFormContainer/>
       </View>
     );
   }
@@ -28,7 +26,8 @@ class BillFormScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    flex: 1
   },
   contentContainer: {
     paddingVertical: 5

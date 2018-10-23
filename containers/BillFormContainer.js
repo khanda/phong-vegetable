@@ -10,6 +10,12 @@ const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
+        <View style={styles.helpContainer}>
+          <Text style={styles.helpText}>
+            Điền số lượng cho các mặt hàng sử dụng nút tăng giảm,
+            hoặc ấn vào ô số lượng để điền bằng bàn phím.
+          </Text>
+        </View>
         {
           bill.map((goods) => (
             <GoodsItemForm key={goods._id}
@@ -21,10 +27,10 @@ const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) 
           ))
         }
       </ScrollView>
+
       <Button full success onPress={() => addBill(bill, null)}>
         <Text>Lưu</Text>
       </Button>
-
     </View>
   )
 };
@@ -32,10 +38,21 @@ const BillFormContainer = ({bill, increase, decrease, changeQuantity, addBill}) 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    flex: 1,
+    flexDirection: 'column'
   },
   contentContainer: {
     paddingVertical: 5
+  },
+  helpContainer: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'gray',
+    padding: 5
+  },
+  helpText: {
+    opacity: 0.7
   }
+
 
 });
 
