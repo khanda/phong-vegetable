@@ -71,9 +71,7 @@ export default function todosReducer(state = initialState, action) {
           item.quantity = Number(item.quantity) + Number(action.intValue);
         }
       });
-      console.log(cloneState);
       return cloneState;
-
     default:
       return state;
   }

@@ -1,79 +1,108 @@
 import React from 'react'
 import {ScrollView, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native'
 import {Button, Icon, Text} from 'native-base';
+import _ from 'lodash'
 
 const MAX_QUANTITY = 1000;
 
-const GoodsItemForm = ({goods, increase, decrease, changeQuantity}) => {
-  var error = null;
+class GoodsItemForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      goods: props.goods
+    };
+    console.log('props:', props);
+    console.log('state:', this.state);
+    this.onChangeQuantityInput = this.onChangeQuantityInput.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.hideError = this.hideError.bind(this);
+    this.showError = this.showError.bind(this);
+  }
 
-  function isValid(value) {
+  isValid(value) {
     if (!value) return false;
     const positiveIntegerRegex = RegExp('^[1-9]+\\d*$');
     return value == 0 || positiveIntegerRegex.test(value);
   }
 
-  function hideError() {
-    error = false;
+  hideError() {
+    this.setState({
+      ...this.state,
+      error: false
+    })
   }
 
-  function showError() {
-    error = true;
+  showError() {
+    this.setState({
+      ...this.state,
+      error: true
+    })
   }
 
-  function onChangeQuantityInput(value) {
-    hideError();
-    if (!isValid(value)) {
-      showError();
+  onChangeQuantityInput(value) {
+    this.hideError();
+    if (!this.isValid(value)) {
+      this.showError();
       return;
     }
-    changeQuantity(value);
+    this.props.changeQuantity(value);
   }
 
-  function increaseQuantity() {
-    if (goods.quantity === MAX_QUANTITY) return;
-    increase(goods._id)
+  increaseQuantity() {
+    console.log(this.state);
+    if (this.state.goods.quantity === MAX_QUANTITY) return;
+    var newGoods = _.clone(this.state.goods);
+    newGoods.quantity = Number(this.state.goods.quantity) + 1;
+    this.setState({...this.state, goods: newGoods});
+    this.props.increase(newGoods._id);
   }
 
-  function decreaseQuantity() {
-    if (goods.quantity === 0) return;
-    decrease(goods._id)
+  decreaseQuantity() {
+    if (this.state.goods.quantity === 0) return;
+    var newGoods = _.clone(this.state.goods);
+    newGoods.quantity = Number(this.state.goods.quantity) - 1;
+    this.setState({...this.state, goods: newGoods});
+    this.props.decrease(newGoods._id);
   }
 
-  return (
-    <View style={styles.colContainer}>
-      <View style={styles.rowContainer}>
-        {/*LEFT*/}
-        <View style={styles.leftContainer}>
-          <Text style={styles.label}>{goods.name}</Text>
-          <TextInput
-            style={styles.input}
-            keyboardType='numeric'
-            onChangeText={onChangeQuantityInput}
-            value={String(goods.quantity)}
+  render() {
+    return (
+      <View style={styles.colContainer}>
+        <View style={styles.rowContainer}>
+          {/*LEFT*/}
+          <View style={styles.leftContainer}>
+            <Text style={styles.label}>{this.state.goods.name}</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType='numeric'
+              onChangeText={this.onChangeQuantityInput}
+              value={String(this.state.goods.quantity)}
 
-          />
-        </View>
-        {/*RIGHT*/}
-        <View style={styles.rightContainer}>
-          <Button small success onPress={increaseQuantity}>
-            <Text>Tăng</Text>
-          </Button>
-          <Button small danger onPress={decreaseQuantity}>
-            <Text>Giảm</Text>
-          </Button>
-        </View>
-      </View>
-      {
-        error ? (
-          <View style={styles.error}>
-            <Text style={styles.errorMsg}>Số lượng là số lớn hơn hoặc bằng 0</Text>
+            />
           </View>
-        ) : null
-      }
+          {/*RIGHT*/}
+          <View style={styles.rightContainer}>
+            <Button small success onPress={this.increaseQuantity}>
+              <Text>Tăng</Text>
+            </Button>
+            <Button small danger onPress={this.decreaseQuantity}>
+              <Text>Giảm</Text>
+            </Button>
+          </View>
+        </View>
+        {
+          this.state.error ? (
+            <View style={styles.error}>
+              <Text style={styles.errorMsg}>Số lượng là số lớn hơn hoặc bằng 0</Text>
+            </View>
+          ) : null
+        }
 
-    </View>
-  )
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

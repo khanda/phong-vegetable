@@ -2,11 +2,12 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
-import {getBillByCustomer} from "../reducers/dailyBill";
-import {Container, Header, Content, Button, Text} from 'native-base';
-import {changeBillItem, increaseItem, toggleTodo} from "../actions";
+import {getEditingBillByCustomer} from "../reducers/dailyBill";
+import {Button, Container, Content, Header, Text} from 'native-base';
+import {changeBillItem, increaseItem} from "../actions";
 
 const BillFormContainer = ({bill, increase, decrease, changeQuantity}) => {
+  console.log(bill);
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -33,15 +34,18 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
   },
-  contentContainer: {
-    paddingVertical: 20
+  contentContainer: {}
+
+});
+
+const mapStateToProps = (state) => {
+  var bill = getEditingBillByCustomer(state, 0);
+  console.log(bill);
+  return {
+    bill: bill
   }
 
-});
-
-const mapStateToProps = (state) => ({
-  bill: getBillByCustomer(state, 0)
-});
+};
 const mapDispatchToProps = dispatch => ({
   increase: _id => dispatch(increaseItem(_id, 1)),
   decrease: _id => dispatch(increaseItem(_id, -1)),
