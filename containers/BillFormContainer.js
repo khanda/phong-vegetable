@@ -33,7 +33,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
   },
-  contentContainer: {}
+  contentContainer: {
+    paddingVertical: 5
+  }
 
 });
 

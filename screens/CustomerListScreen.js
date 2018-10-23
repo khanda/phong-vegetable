@@ -6,7 +6,9 @@ import CustomerListContainer from "../containers/CustomerListContainer";
 
 class CustomerListScreen extends React.Component {
   static navigationOptions = {
-    title: 'Khách hàng'
+    title: 'Khách hàng',
+    headerBackTitle: 'Khách hàng',
+    headerTruncatedBackTitle: 'Khách hàng'
   };
 
   render() {
