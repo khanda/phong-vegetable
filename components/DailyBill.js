@@ -39,7 +39,8 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
       {showEmptyMessage()}
       {showDescriptionText()}
 
-      <List style={styles.listContainer} dataArray={billItems} renderRow={(item) =>
+      {billItems && billItems.length > 0 &&
+      <List dataArray={billItems} renderRow={(item) =>
         <ListItem>
           <Left>
             <Text>{item.name}</Text>
@@ -50,25 +51,21 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
         </ListItem>
       }>
       </List>
-
+      }
     </View>
   )
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 10
+    backgroundColor: '#fff',
+    marginTop: 10,
   },
   descriptionText: {
     padding: 10
   },
   customerInfo: {
     fontWeight: 'bold'
-  },
-  listContainer: {
-    borderTopWidth: 0.5,
-    borderTopColor: 'gray'
-
   }
 });
 

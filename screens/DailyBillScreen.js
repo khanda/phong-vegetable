@@ -29,7 +29,7 @@ class DailyBillScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff'
+    // backgroundColor: '#fff'
   },
   contentContainer: {
     // paddingVertical: 20

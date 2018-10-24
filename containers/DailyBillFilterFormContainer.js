@@ -64,9 +64,7 @@ const styles = StyleSheet.create({
     marginBottom: 0
   },
   form: {
-    padding: 5,
-    borderBottomWidth: 0.5,
-    borderBottomColor: 'gray'
+    padding: 5
   }
 });
 const mapStateToProps = (state) => {
