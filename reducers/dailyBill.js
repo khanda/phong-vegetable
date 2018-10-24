@@ -21,20 +21,7 @@ const initBill = [
 var initialState = {
   loading: false,
   error: null,
-  bill: [
-    {_id: 1, name: 'Hành', quantity: 0},
-    {_id: 2, name: 'Tỏi', quantity: 0},
-    {_id: 3, name: 'Dưa chuột', quantity: 0},
-    {_id: 4, name: 'Cà rốt', quantity: 0},
-    {_id: 5, name: 'Cà tím', quantity: 0},
-    {_id: 6, name: 'Bí', quantity: 0},
-    {_id: 7, name: 'Khoai tây', quantity: 0},
-    {_id: 8, name: 'Mùi', quantity: 0},
-    {_id: 9, name: 'ớt', quantity: 0},
-    {_id: 10, name: 'Ngô', quantity: 0},
-    {_id: 11, name: 'Thì là', quantity: 0},
-    {_id: 12, name: 'Cam', quantity: 0},
-  ],
+  bill: [],
   editingBill: _.clone(initBill),
   date: null
 };
@@ -95,12 +82,20 @@ export default function dailyBillReducer(state = initialState, action) {
      * GET BILL
      */
 
+    case 'CHANGE_BILL_DATE':
+      console.log('CHANGE_BILL_DATE');
+      return {
+        ...state,
+        date: action.date
+      };
     case 'GET_BILL_STARTED':
+      console.log('GET_BILL_STARTED');
       return {
         ...state,
         loading: true
       };
     case 'GET_BILL_SUCCESS':
+      console.log('GET_BILL_SUCCESS');
       Toast.show({
         text: 'Thành công',
         buttonText: 'Ok',
@@ -115,6 +110,7 @@ export default function dailyBillReducer(state = initialState, action) {
         bill: action.payload.bill
       };
     case 'GET_BILL_FAILURE':
+      console.log('GET_BILL_FAILURE');
       Toast.show({
         text: 'Xảy ra lỗi',
         duration: 10000,
@@ -133,3 +129,4 @@ export default function dailyBillReducer(state = initialState, action) {
 export const getBillByCustomer = (state, customerId) => state.bill || initialState.bill;
 export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
 export const isLoading = (state) => state.dailyBillReducer.loading || false;
+export const getBillDate = (state) => state.date || null;

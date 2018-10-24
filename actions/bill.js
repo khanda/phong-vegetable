@@ -77,7 +77,7 @@ export const getBill = (date, customerId) => {
   return (dispatch, getState) => {
     dispatch(changeBillDate());
     dispatch(getBillStarted());
-    DB.bills.get(date, function (added_data) {
+    DB.bills.get_all(date, function (added_data) {
       dispatch(getBillSuccess(added_data));
     })
   };

@@ -1,9 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
-import moment from 'moment'
 import {ListItem} from 'react-native-elements'
-import {getDailyBill} from "../actions";
+import {getBill} from "../actions";
 import {Container, Content, DatePicker, Header, Text} from 'native-base';
 
 
@@ -31,7 +30,7 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
 
   function setDate(newDate) {
     filter.date = newDate;
-    dispatch(getDailyBill(filter.date));
+    dispatch(getBill(filter.date, null));
   }
 
   return (

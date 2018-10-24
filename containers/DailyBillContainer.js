@@ -1,10 +1,11 @@
 import {connect} from 'react-redux'
 import DailyBill from "../components/DailyBill";
-import {getBillByCustomer} from "../reducers/dailyBill";
+import {getBillByCustomer, getBillDate} from "../reducers/dailyBill";
 
 const mapStateToProps = state => {
-   return {
-    dailyBillItems: getBillByCustomer(state, 0)
+  return {
+    billItems: getBillByCustomer(state, 0),
+    date: getBillDate(state)
   }
 };
 
