@@ -95,19 +95,20 @@ export default function dailyBillReducer(state = initialState, action) {
         loading: true
       };
     case 'GET_BILL_SUCCESS':
+      console.log(action.bill);
       console.log('GET_BILL_SUCCESS');
       Toast.show({
         text: 'Thành công',
         buttonText: 'Ok',
-        duration: 10000,
+        duration: 3000,
         type: 'success'
       });
-      NavigationService.navigate('DailyBill');
+
       return {
         ...state,
         loading: false,
         error: null,
-        bill: action.payload.bill
+        bill: action.bill
       };
     case 'GET_BILL_FAILURE':
       console.log('GET_BILL_FAILURE');
@@ -126,7 +127,7 @@ export default function dailyBillReducer(state = initialState, action) {
   }
 }
 
-export const getBillByCustomer = (state, customerId) => state.bill || initialState.bill;
+export const getBillByCustomer = (state, customerId) => state.dailyBillReducer.bill || initialState.bill;
 export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
 export const isLoading = (state) => state.dailyBillReducer.loading || false;
 export const getBillDate = (state) => state.dailyBillReducer.date || null;

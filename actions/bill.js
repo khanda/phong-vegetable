@@ -82,10 +82,10 @@ export const getBill = (date, customer) => {
   return (dispatch, getState) => {
     dispatch(changeBillDate(date));
     dispatch(getBillStarted());
-    DB.bills.get({"customerId": customer._id, "date": date},
+    DB.bills.get({"customerId": customer._id},
       function (result) {
-        console.log(result);
-        dispatch(getBillSuccess(result));
+        const bill = result && result.length > 0 ? result[0].goods : [];
+        dispatch(getBillSuccess(bill));
       })
   };
 };
@@ -100,9 +100,7 @@ const getBillStarted = () => ({
 });
 const getBillSuccess = bill => ({
   type: 'GET_BILL_SUCCESS',
-  payload: {
-    ...bill
-  }
+  bill
 });
 const getBillFailure = error => ({
   type: 'GET_BILL_FAILURE',
