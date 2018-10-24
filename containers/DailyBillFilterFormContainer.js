@@ -47,7 +47,7 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
           modalTransparent={false}
           animationType={"fade"}
           androidMode={"default"}
-          placeHolderText="chọn ngày"
+          placeHolderText="ấn để chọn"
           textStyle={{color: "green"}}
           placeHolderTextStyle={{color: "#d3d3d3"}}
           onDateChange={setDate}

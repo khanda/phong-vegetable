@@ -90,6 +90,41 @@ export default function dailyBillReducer(state = initialState, action) {
         }
       });
       return cloneState;
+
+    /**
+     * GET BILL
+     */
+
+    case 'GET_BILL_STARTED':
+      return {
+        ...state,
+        loading: true
+      };
+    case 'GET_BILL_SUCCESS':
+      Toast.show({
+        text: 'Thành công',
+        buttonText: 'Ok',
+        duration: 10000,
+        type: 'success'
+      });
+      NavigationService.navigate('DailyBill');
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        bill: action.payload.bill
+      };
+    case 'GET_BILL_FAILURE':
+      Toast.show({
+        text: 'Xảy ra lỗi',
+        duration: 10000,
+        type: 'danger'
+      });
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      };
     default:
       return state;
   }
