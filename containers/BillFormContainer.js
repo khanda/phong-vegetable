@@ -6,8 +6,9 @@ import {getEditingBillByCustomer, isLoading} from "../reducers/dailyBill";
 import {Button, Container, Content, Header, Text, Spinner} from 'native-base';
 import {addBill, changeBillItem, increaseItem} from "../actions";
 import {KeyboardAvoidingView} from 'react-native';
+import {getSelectedCustomer} from "../reducers/customer";
 
-const BillFormContainer = ({bill, isLoading, increase, decrease, changeQuantity, addBill}) => {
+const BillFormContainer = ({bill, isLoading, customer, increase, decrease, changeQuantity, addBill}) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -29,7 +30,7 @@ const BillFormContainer = ({bill, isLoading, increase, decrease, changeQuantity,
         }
       </ScrollView>
       <View style={styles.footer}>
-        <Button full success onPress={() => addBill(bill, null)}>
+        <Button full success onPress={() => addBill(bill, customer)}>
           <Text>Lưu</Text>
           {isLoading && <Spinner color='white'/>}
         </Button>
@@ -65,13 +66,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     bill: getEditingBillByCustomer(state, 0),
-    isLoading: isLoading(state)
+    isLoading: isLoading(state),
+    customer: getSelectedCustomer(state),
   }
 };
 const mapDispatchToProps = dispatch => ({
   increase: _id => dispatch(increaseItem(_id, 1)),
   decrease: _id => dispatch(increaseItem(_id, -1)),
   changeQuantity: (_id, value) => dispatch(changeBillItem(_id, value)),
-  addBill: (bill, customerId) => dispatch(addBill(bill, customerId)),
+  addBill: (bill, customer) => dispatch(addBill(bill, customer)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(BillFormContainer)

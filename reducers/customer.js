@@ -23,12 +23,17 @@ export default function customerReducer(state = initialState, action) {
   switch (action.type) {
     case 'SELECT_CUSTOMER_START':
       NavigationService.navigate('DailyBill', state.customers[action._id]);
-      return state;
-
+      console.log('action id: ', action._id);
+      return {
+        ...state,
+        selectedCustomer: action._id
+      };
     default:
       return state;
   }
 }
 
 export const getCustomers = (state) => state.customers || initialState.customers;
-export const getSelectedCustomer = (state) => state.customerReducer.customers[state.selectedCustomer] || null;
+export const getSelectedCustomer = (state) => {
+ return state.customerReducer.customers[state.customerReducer.selectedCustomer] || null;
+};

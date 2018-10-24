@@ -1,4 +1,5 @@
 import DB from "../DB";
+import Bill from "../entity/Bill";
 
 /**
  * ADD BILL
@@ -10,12 +11,17 @@ import DB from "../DB";
  * @param customerId
  * @returns {function(*, *)}
  */
-export const addBill = (bill, customerId) => {
+export const addBill = (goods, customer) => {
+  console.log(customer);
   return (dispatch, getState) => {
     dispatch(addBillStarted());
-    // var state = getState();
-    DB.bills.add(bill, function (added_data) {
+    var billEntity = new Bill(customer._id, goods);
+    DB.bills.add(billEntity, function (added_data) {
       dispatch(addBillSuccess(added_data));
+
+      DB.bills.get({"customerId": customer._id}, function (result) {
+        console.log(result);
+      })
     })
 
     // axios
@@ -77,7 +83,7 @@ export const getBill = (date, customerId) => {
   return (dispatch, getState) => {
     dispatch(changeBillDate(date));
     dispatch(getBillStarted());
-    DB.bills.get_all(date, function (result) {
+    DB.bills.get_all(function (result) {
       console.log(result);
       dispatch(getBillSuccess(added_data));
     })
