@@ -11,13 +11,7 @@ class DailyBillScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Hóa đơn',
-      headerRight: (
-        <Button
-          onPress={() => navigation.navigate('BillForm')}
-          title="Thêm"
-        />
-      )
+      title: 'Hóa đơn'
     }
   };
 
