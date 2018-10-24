@@ -5,13 +5,13 @@ import NavigationService from "../navigation/NavigationService";
 import getDateString from "../filters/dateFilter";
 
 
-const DailyBill = ({billItems, date, customer}) => {
+const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
   function isBillEmpty(items) {
     return date && (!items || items.length === 0);
   }
 
   function showEmptyMessage() {
-    if (isBillEmpty(billItems)) {
+    if (isShowAddMsg) {
       return (
         <View>
           <Text style={styles.descriptionText}>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>

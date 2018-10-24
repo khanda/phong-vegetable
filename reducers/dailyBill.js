@@ -23,7 +23,8 @@ var initialState = {
   error: null,
   bill: [],
   editingBill: _.clone(initBill),
-  date: null
+  date: null,
+  showAdd: false
 };
 
 export default function dailyBillReducer(state = initialState, action) {
@@ -37,7 +38,7 @@ export default function dailyBillReducer(state = initialState, action) {
       Toast.show({
         text: 'Thành công',
         buttonText: 'Ok',
-        duration: 10000,
+        duration: 3000,
         type: 'success'
       });
       NavigationService.navigate('DailyBill');
@@ -108,7 +109,8 @@ export default function dailyBillReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: null,
-        bill: action.bill
+        bill: action.bill,
+        showAdd: !(action.bill && action.bill.length > 0)
       };
     case 'GET_BILL_FAILURE':
       console.log('GET_BILL_FAILURE');
@@ -131,3 +133,4 @@ export const getBillByCustomer = (state, customerId) => state.dailyBillReducer.b
 export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
 export const isLoading = (state) => state.dailyBillReducer.loading || false;
 export const getBillDate = (state) => state.dailyBillReducer.date || null;
+export const getShowAdd = (state) => state.dailyBillReducer.showAdd || null;

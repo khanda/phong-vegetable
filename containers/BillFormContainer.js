@@ -43,7 +43,7 @@ const BillFormContainer = ({
         }
       </ScrollView>
       <View style={styles.footer}>
-        <Button full success onPress={() => addBill(bill, customer, date)}>
+        <Button full primary onPress={() => addBill(bill, customer, date)}>
           <Text>Lưu</Text>
           {isLoading && <Spinner color='white'/>}
         </Button>
