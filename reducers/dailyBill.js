@@ -23,7 +23,7 @@ var initialState = {
   error: null,
   bill: [],
   editingBill: _.clone(initBill),
-  date: new Date(),
+  date: null,
   showAdd: false
 };
 
@@ -128,7 +128,7 @@ export default function dailyBillReducer(state = initialState, action) {
     case 'RESET_DEFAULT_DATE':
       return {
         ...state,
-        date: new Date()
+        date: null
       };
     case 'RESET_BILL':
       return {
