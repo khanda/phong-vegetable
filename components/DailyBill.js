@@ -6,10 +6,6 @@ import getDateString from "../filters/dateFilter";
 
 
 const DailyBill = ({billItems, date, customer}) => {
-  console.log(date);
-  console.log(customer);
-  console.log(billItems);
-
   function isBillEmpty(items) {
     return date && (!items || items.length === 0);
   }
@@ -18,8 +14,8 @@ const DailyBill = ({billItems, date, customer}) => {
     if (isBillEmpty(billItems)) {
       return (
         <View>
-          <Text>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
-          <Button success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
+          <Text style={styles.descriptionText}>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
+          <Button full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
             <Text>Thêm hóa đơn</Text>
           </Button>
         </View>

@@ -47,7 +47,7 @@ const DailyBillFilterForm = ({customer, date, isLoading, onGetBill, onChangeDate
           placeHolderTextStyle={{color: "#d3d3d3"}}
           onDateChange={setDate}
         />
-        <Button full success onPress={() => onGetBill(date, customer)}>
+        <Button full primary onPress={() => onGetBill(date, customer)}>
           <Text>Lấy hóa đơn</Text>
           {isLoading && <Spinner color='white'/>}
         </Button>

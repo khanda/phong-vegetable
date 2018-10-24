@@ -86,7 +86,8 @@ export default function dailyBillReducer(state = initialState, action) {
       console.log('CHANGE_BILL_DATE', action.date);
       return {
         ...state,
-        date: action.date
+        date: action.date,
+        bill: []
       };
     case 'GET_BILL_STARTED':
       console.log('GET_BILL_STARTED');
@@ -95,7 +96,6 @@ export default function dailyBillReducer(state = initialState, action) {
         loading: true
       };
     case 'GET_BILL_SUCCESS':
-      console.log(action.bill);
       console.log('GET_BILL_SUCCESS');
       Toast.show({
         text: 'Thành công',
