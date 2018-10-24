@@ -5,7 +5,11 @@ import NavigationService from "../navigation/NavigationService";
 import getDateString from "../filters/dateFilter";
 
 
-const DailyBill = ({billItems, date}) => {
+const DailyBill = ({billItems, date, customer}) => {
+  console.log(date);
+  console.log(customer);
+  console.log(billItems);
+
   function isBillEmpty(items) {
     return date && (!items || items.length === 0);
   }
@@ -15,7 +19,7 @@ const DailyBill = ({billItems, date}) => {
       return (
         <View>
           <Text>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
-          <Button full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
+          <Button success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
             <Text>Thêm hóa đơn</Text>
           </Button>
         </View>
@@ -23,28 +27,34 @@ const DailyBill = ({billItems, date}) => {
     }
   }
 
+  function showDescriptionText() {
+    if (!date || isBillEmpty(billItems)) return null;
+
+    return (
+      <Text style={styles.descriptionText}>Hóa đơn ngày
+        <Text style={styles.customerInfo}> {getDateString(date)} </Text> của
+        <Text style={styles.customerInfo}> {customer.name} </Text>
+      </Text>
+    )
+  }
+
   return (
     <View style={styles.container}>
       {showEmptyMessage()}
+      {showDescriptionText()}
 
-      <List dataArray={billItems}
-            renderRow={(item) =>
-              <ListItem avatar>
-                <Left>
-                  {item.icon &&
-                  <Thumbnail small source={{uri: item.icon}}/>
-                  }
-                </Left>
-                <Body>
-                <Text>{item.name}</Text>
-                {/*<Text note></Text>*/}
-                </Body>
-                <Right>
-                  <Text>{item.quantity}</Text>
-                </Right>
-              </ListItem>
-            }>
+      <List style={styles.listContainer} dataArray={billItems} renderRow={(item) =>
+        <ListItem>
+          <Left>
+            <Text>{item.name}</Text>
+          </Left>
+          <Right>
+            <Text>{item.quantity}</Text>
+          </Right>
+        </ListItem>
+      }>
       </List>
+
     </View>
   )
 };
@@ -52,6 +62,17 @@ const DailyBill = ({billItems, date}) => {
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10
+  },
+  descriptionText: {
+    padding: 10
+  },
+  customerInfo: {
+    fontWeight: 'bold'
+  },
+  listContainer: {
+    borderTopWidth: 0.5,
+    borderTopColor: 'gray'
+
   }
 });
 

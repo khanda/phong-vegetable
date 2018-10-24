@@ -49,7 +49,7 @@ const DailyBillFilterForm = ({customer, date, isLoading, onGetBill, onChangeDate
         />
         <Button full success onPress={() => onGetBill(date, customer)}>
           <Text>Lấy hóa đơn</Text>
-          {/*{isLoading && <Spinner color='white'/>}*/}
+          {isLoading && <Spinner color='white'/>}
         </Button>
 
       </View>
