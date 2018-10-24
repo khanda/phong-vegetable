@@ -1,7 +1,8 @@
-const Bill = function (customerId, goods) {
+const Bill = function (customerId, goods, date) {
   return {
     customerId: customerId,
-    goods: goods
+    goods: goods,
+    date: date,
   }
 };
 

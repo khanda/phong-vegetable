@@ -2,6 +2,7 @@ import React from 'react'
 import {StyleSheet, View, ScrollView} from 'react-native'
 import {Container, Header, Content, List, ListItem, Text, Left, Right, Body, Thumbnail, Button} from 'native-base';
 import NavigationService from "../navigation/NavigationService";
+import getDateString from "../filters/dateFilter";
 
 
 const DailyBill = ({billItems, date}) => {
@@ -13,7 +14,7 @@ const DailyBill = ({billItems, date}) => {
     if (isBillEmpty(billItems)) {
       return (
         <View>
-          <Text>Chưa có hóa đơn cho ngày {date}</Text>
+          <Text>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
           <Button full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
             <Text>Thêm hóa đơn</Text>
           </Button>

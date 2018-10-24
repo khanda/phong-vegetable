@@ -1,14 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ScrollView, StyleSheet, View} from 'react-native'
+import {KeyboardAvoidingView, ScrollView, StyleSheet, View} from 'react-native'
 import GoodsItemForm from "../components/GoodsItemForm";
-import {getEditingBillByCustomer, isLoading} from "../reducers/dailyBill";
-import {Button, Container, Content, Header, Text, Spinner} from 'native-base';
+import {getBillDate, getEditingBillByCustomer, isLoading} from "../reducers/dailyBill";
+import {Button, Container, Content, Header, Spinner, Text} from 'native-base';
 import {addBill, changeBillItem, increaseItem} from "../actions";
-import {KeyboardAvoidingView} from 'react-native';
 import {getSelectedCustomer} from "../reducers/customer";
+import getDateString from "../filters/dateFilter";
 
-const BillFormContainer = ({bill, isLoading, customer, increase, decrease, changeQuantity, addBill}) => {
+const BillFormContainer = ({
+                             bill,
+                             isLoading,
+                             customer,
+                             date,
+                             /**
+                              * functions
+                              */
+                             increase,
+                             decrease,
+                             changeQuantity,
+                             addBill
+                           }) => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
       <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -17,6 +29,7 @@ const BillFormContainer = ({bill, isLoading, customer, increase, decrease, chang
             Điền số lượng cho các mặt hàng sử dụng nút tăng giảm,
             hoặc ấn vào ô số lượng để điền bằng bàn phím.
           </Text>
+          <Text>{getDateString(date)}</Text>
         </View>
         {
           bill.map((goods) => (
@@ -30,7 +43,7 @@ const BillFormContainer = ({bill, isLoading, customer, increase, decrease, chang
         }
       </ScrollView>
       <View style={styles.footer}>
-        <Button full success onPress={() => addBill(bill, customer)}>
+        <Button full success onPress={() => addBill(bill, customer, date)}>
           <Text>Lưu</Text>
           {isLoading && <Spinner color='white'/>}
         </Button>
@@ -68,12 +81,13 @@ const mapStateToProps = (state) => {
     bill: getEditingBillByCustomer(state, 0),
     isLoading: isLoading(state),
     customer: getSelectedCustomer(state),
+    date: getBillDate(state),
   }
 };
 const mapDispatchToProps = dispatch => ({
   increase: _id => dispatch(increaseItem(_id, 1)),
   decrease: _id => dispatch(increaseItem(_id, -1)),
   changeQuantity: (_id, value) => dispatch(changeBillItem(_id, value)),
-  addBill: (bill, customer) => dispatch(addBill(bill, customer)),
+  addBill: (goods, customer, date) => dispatch(addBill(goods, customer, date)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(BillFormContainer)

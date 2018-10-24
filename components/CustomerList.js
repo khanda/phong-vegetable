@@ -13,7 +13,7 @@ const CustomerList = ({customers, selectCustomer}) => {
             </Left>
             <Body>
             <Text>{item.name}</Text>
-            <Text note></Text>
+            <Text note>id: {item._id}</Text>
             </Body>
             <Right>
               <Icon active name="arrow-forward"/>

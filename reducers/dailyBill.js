@@ -129,4 +129,4 @@ export default function dailyBillReducer(state = initialState, action) {
 export const getBillByCustomer = (state, customerId) => state.bill || initialState.bill;
 export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
 export const isLoading = (state) => state.dailyBillReducer.loading || false;
-export const getBillDate = (state) => state.date || null;
+export const getBillDate = (state) => state.dailyBillReducer.date || null;

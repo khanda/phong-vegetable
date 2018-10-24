@@ -7,21 +7,18 @@ import Bill from "../entity/Bill";
 
 /**
  *
- * @param bill
- * @param customerId
  * @returns {function(*, *)}
+ * @param goods
+ * @param customer
+ * @param date
  */
-export const addBill = (goods, customer) => {
-  console.log(customer);
+export const addBill = (goods, customer, date) => {
   return (dispatch, getState) => {
     dispatch(addBillStarted());
-    var billEntity = new Bill(customer._id, goods);
+    const billEntity = new Bill(customer._id, goods, date);
     DB.bills.add(billEntity, function (added_data) {
       dispatch(addBillSuccess(added_data));
-
-      DB.bills.get({"customerId": customer._id}, function (result) {
-        console.log(result);
-      })
+      console.log(added_data);
     })
 
     // axios
@@ -76,24 +73,27 @@ export const increaseItem = (_id, intValue) => ({
 /**
  *
  * @param date
- * @param customerId
+ * @param customer
  * @returns {function(*, *)}
  */
-export const getBill = (date, customerId) => {
+export const getBill = (date, customer) => {
+  console.log(date);
+  console.log(customer);
   return (dispatch, getState) => {
     dispatch(changeBillDate(date));
     dispatch(getBillStarted());
-    DB.bills.get_all(function (result) {
-      console.log(result);
-      dispatch(getBillSuccess(added_data));
-    })
+    DB.bills.get({"customerId": customer._id, "date": date},
+      function (result) {
+        console.log(result);
+        dispatch(getBillSuccess(result));
+      })
   };
 };
 
-export const changeBillDate = (date, customerId) => ({
+export const changeBillDate = (date, customer) => ({
   type: 'CHANGE_BILL_DATE',
   date,
-  customerId
+  customer
 });
 const getBillStarted = () => ({
   type: 'GET_BILL_STARTED'

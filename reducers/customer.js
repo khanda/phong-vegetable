@@ -22,8 +22,10 @@ var initialState = {
 export default function customerReducer(state = initialState, action) {
   switch (action.type) {
     case 'SELECT_CUSTOMER_START':
-      NavigationService.navigate('DailyBill', state.customers[action._id]);
-      console.log('action id: ', action._id);
+      const found = state.customers.find(function (customer) {
+        return customer._id == action._id;
+      });
+      NavigationService.navigate('DailyBill', found);
       return {
         ...state,
         selectedCustomer: action._id
@@ -35,5 +37,7 @@ export default function customerReducer(state = initialState, action) {
 
 export const getCustomers = (state) => state.customers || initialState.customers;
 export const getSelectedCustomer = (state) => {
- return state.customerReducer.customers[state.customerReducer.selectedCustomer] || null;
+  return state.customerReducer.customers.find(function (customer) {
+    return customer._id == state.customerReducer.selectedCustomer;
+  });
 };

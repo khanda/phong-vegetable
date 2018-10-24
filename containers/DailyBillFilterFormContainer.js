@@ -2,18 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import {ListItem} from 'react-native-elements'
-import {getBill} from "../actions";
+import {changeBillDate, getBill} from "../actions";
 import {Button, Container, Content, DatePicker, Header, Spinner, Text} from 'native-base';
 import {getBillDate, isLoading} from "../reducers/dailyBill";
 import {getSelectedCustomer} from "../reducers/customer";
 
 
-const DailyBillFilterForm = ({customer, date, isLoading, onGetBill}) => {
-
-  var filter = {
-    // date: moment().add(-1, 'day').toDate(),
-    date: new Date(),
-  };
+const DailyBillFilterForm = ({customer, date, isLoading, onGetBill, onChangeDate}) => {
 
   function getCustomer() {
     if (customer && customer._id) {
@@ -31,7 +26,7 @@ const DailyBillFilterForm = ({customer, date, isLoading, onGetBill}) => {
   }
 
   function setDate(newDate) {
-    filter.date = newDate;
+    onChangeDate(newDate, customer);
   }
 
   return (
@@ -52,7 +47,7 @@ const DailyBillFilterForm = ({customer, date, isLoading, onGetBill}) => {
           placeHolderTextStyle={{color: "#d3d3d3"}}
           onDateChange={setDate}
         />
-        <Button full success onPress={() => onGetBill(filter.date, null)}>
+        <Button full success onPress={() => onGetBill(date, customer)}>
           <Text>Lấy hóa đơn</Text>
           {/*{isLoading && <Spinner color='white'/>}*/}
         </Button>
@@ -81,6 +76,7 @@ const mapStateToProps = (state) => {
   }
 };
 const mapDispatchToProps = dispatch => ({
-  onGetBill: (date, customerId) => dispatch(getBill(date, customerId)),
+  onGetBill: (date, customer) => dispatch(getBill(date, customer)),
+  onChangeDate: (date, customer) => dispatch(changeBillDate(date, customer)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(DailyBillFilterForm)
