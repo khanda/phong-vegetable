@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import {ScrollView, StyleSheet, View} from 'react-native'
 import {ListItem} from 'react-native-elements'
 import {getBill} from "../actions";
-import {Container, Content, DatePicker, Header, Text} from 'native-base';
+import {Button, Container, Content, DatePicker, Header, Spinner, Text} from 'native-base';
+import {getBillDate, isLoading} from "../reducers/dailyBill";
+import {getSelectedCustomer} from "../reducers/customer";
 
 
-const DailyBillFilterFormContainer = ({customer, dispatch}) => {
+const DailyBillFilterForm = ({customer, date, isLoading, onGetBill}) => {
 
   var filter = {
     // date: moment().add(-1, 'day').toDate(),
@@ -30,7 +32,6 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
 
   function setDate(newDate) {
     filter.date = newDate;
-    dispatch(getBill(filter.date, null));
   }
 
   return (
@@ -51,6 +52,11 @@ const DailyBillFilterFormContainer = ({customer, dispatch}) => {
           placeHolderTextStyle={{color: "#d3d3d3"}}
           onDateChange={setDate}
         />
+        <Button full success onPress={() => onGetBill(filter.date, null)}>
+          <Text>Lấy hóa đơn</Text>
+          {/*{isLoading && <Spinner color='white'/>}*/}
+        </Button>
+
       </View>
     </View>
   )
@@ -67,5 +73,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'gray'
   }
 });
-
-export default connect()(DailyBillFilterFormContainer)
+const mapStateToProps = (state) => {
+  return {
+    customer: getSelectedCustomer(state),
+    date: getBillDate(state, 0),
+    isLoading: isLoading(state)
+  }
+};
+const mapDispatchToProps = dispatch => ({
+  onGetBill: (date, customerId) => dispatch(getBill(date, customerId)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(DailyBillFilterForm)

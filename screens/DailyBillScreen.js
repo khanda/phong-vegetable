@@ -22,18 +22,10 @@ class DailyBillScreen extends React.Component {
   };
 
   render() {
-    const _id = this.props.navigation.getParam('_id', null);
-    const name = this.props.navigation.getParam('name', null);
-    const avatar = this.props.navigation.getParam('avatar', '');
-    const customer = {
-      _id: _id,
-      name: name,
-      avatar: avatar
-    };
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <DailyBillFilterFormContainer customer={customer}/>
+          <DailyBillFilterFormContainer/>
           <DailyBillContainer/>
         </ScrollView>
       </View>

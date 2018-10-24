@@ -31,4 +31,4 @@ export default function customerReducer(state = initialState, action) {
 }
 
 export const getCustomers = (state) => state.customers || initialState.customers;
-export const getSelectedCustomer = (state) => state.selectedCustomer || initialState.selectedCustomer;
+export const getSelectedCustomer = (state) => state.customerReducer.customers[state.selectedCustomer] || null;

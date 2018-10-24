@@ -5,9 +5,6 @@ import NavigationService from "../navigation/NavigationService";
 
 
 const DailyBill = ({billItems, date}) => {
-
-  console.log(date);
-
   function isBillEmpty(items) {
     return date && (!items || items.length === 0);
   }

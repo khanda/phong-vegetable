@@ -75,9 +75,10 @@ export const increaseItem = (_id, intValue) => ({
  */
 export const getBill = (date, customerId) => {
   return (dispatch, getState) => {
-    dispatch(changeBillDate());
+    dispatch(changeBillDate(date));
     dispatch(getBillStarted());
-    DB.bills.get_all(date, function (added_data) {
+    DB.bills.get_all(date, function (result) {
+      console.log(result);
       dispatch(getBillSuccess(added_data));
     })
   };

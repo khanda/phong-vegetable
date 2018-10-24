@@ -83,7 +83,7 @@ export default function dailyBillReducer(state = initialState, action) {
      */
 
     case 'CHANGE_BILL_DATE':
-      console.log('CHANGE_BILL_DATE');
+      console.log('CHANGE_BILL_DATE', action.date);
       return {
         ...state,
         date: action.date
