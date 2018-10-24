@@ -28,13 +28,12 @@ const BillFormContainer = ({bill, isLoading, increase, decrease, changeQuantity,
           ))
         }
       </ScrollView>
-
-      <Button full success onPress={() => addBill(bill, null)}>
-        <Text>Lưu</Text>
-        {isLoading && <Spinner color='white'/>
-        }
-
-      </Button>
+      <View style={styles.footer}>
+        <Button full success onPress={() => addBill(bill, null)}>
+          <Text>Lưu</Text>
+          {isLoading && <Spinner color='white'/>}
+        </Button>
+      </View>
     </KeyboardAvoidingView>
   )
 };
@@ -55,8 +54,11 @@ const styles = StyleSheet.create({
   },
   helpText: {
     opacity: 0.7
+  },
+  footer: {
+    backgroundColor: 'white',
+    paddingTop: 5
   }
-
 
 });
 
