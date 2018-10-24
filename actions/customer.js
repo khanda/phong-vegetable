@@ -1,5 +1,9 @@
+import {resetBill, resetDefaultBillDate} from "./bill";
+
 export const selectCustomer = (_id) => {
   return (dispatch, getState) => {
+    dispatch(resetDefaultBillDate());
+    dispatch(resetBill());
     dispatch(selectCustomerStart(_id));
   };
 };

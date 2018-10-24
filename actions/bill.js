@@ -108,3 +108,11 @@ const getBillFailure = error => ({
     error
   }
 });
+
+export const resetDefaultBillDate = () => ({
+  type: 'RESET_DEFAULT_DATE'
+});
+
+export const resetBill = () => ({
+  type: 'RESET_BILL'
+});
