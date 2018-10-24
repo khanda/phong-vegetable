@@ -35,7 +35,8 @@ var initialState = {
     {_id: 11, name: 'Thì là', quantity: 0},
     {_id: 12, name: 'Cam', quantity: 0},
   ],
-  editingBill: _.clone(initBill)
+  editingBill: _.clone(initBill),
+  date: null
 };
 
 export default function dailyBillReducer(state = initialState, action) {

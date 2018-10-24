@@ -9,8 +9,9 @@ class BillFormScreen extends React.Component {
   }
 
   static navigationOptions = ({navigation}) => {
+    const isEdit = navigation.getParam('isEdit', false);
     return {
-      title: 'Tạo hóa đơn'
+      title: isEdit ? 'Sửa hóa đơn' : 'Tạo hóa đơn'
     }
   };
 
