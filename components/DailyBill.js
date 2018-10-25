@@ -14,7 +14,7 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
     if (isShowAddMsg) {
       return (
         <View>
-          <Text>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
+          <Text style={styles.noBill}>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
           <Button small full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
             <Text>Thêm hóa đơn</Text>
           </Button>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   billSummary: {
-    backgroundColor:'#dedbdd',
+    backgroundColor: '#dedbdd',
     padding: 10,
     borderBottomWidth: 0.3,
     borderBottomColor: 'gray',
@@ -102,6 +102,9 @@ const styles = StyleSheet.create({
     // borderBottomColor: 'gray',
     // borderTopWidth: 0.3,
     // borderTopColor: 'gray'
+  },
+  noBill: {
+    padding: 5
   }
 });
 

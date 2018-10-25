@@ -3,6 +3,7 @@ import {Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View} f
 import {WebBrowser} from 'expo';
 import CustomerList from "../components/CustomerList";
 import CustomerListContainer from "../containers/CustomerListContainer";
+import DB from "../DB";
 
 class CustomerListScreen extends React.Component {
   static navigationOptions = {
@@ -12,6 +13,10 @@ class CustomerListScreen extends React.Component {
   };
 
   render() {
+    DB.bills.erase_db(function(removed_data){
+      console.log('REMOVE BILLS');
+      console.log(removed_data);
+    });
     return (
       <View style={styles.container}>
         <CustomerListContainer/>
