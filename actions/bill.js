@@ -109,10 +109,6 @@ const getBillFailure = error => ({
   }
 });
 
-export const resetDefaultBillDate = () => ({
-  type: 'RESET_DEFAULT_DATE'
-});
-
-export const resetBill = () => ({
-  type: 'RESET_BILL'
+export const resetFilterBillForm = () => ({
+  type: 'RESET_BILL_FILTER_FORM'
 });

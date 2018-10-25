@@ -125,17 +125,13 @@ export default function dailyBillReducer(state = initialState, action) {
         error: action.payload.error
       };
 
-    case 'RESET_DEFAULT_DATE':
+    case 'RESET_BILL_FILTER_FORM':
       return {
         ...state,
-        date: null
+        date: null,
+        bill: [],
+        showAdd: false
       };
-    case 'RESET_BILL':
-      return {
-        ...state,
-        bill: []
-      };
-
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet, View, ScrollView} from 'react-native'
-import {Container, Header, Content, List, ListItem, Text, Left, Right, Body, Thumbnail, Button} from 'native-base';
+import {ScrollView, StyleSheet, View} from 'react-native'
+import {Button, Container, Content, Header, Left, List, ListItem, Right, Text, Thumbnail} from 'native-base';
 import NavigationService from "../navigation/NavigationService";
 import getDateString from "../filters/dateFilter";
 
@@ -15,7 +15,7 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
       return (
         <View>
           <Text style={styles.descriptionText}>Chưa có hóa đơn cho ngày {getDateString(date)}</Text>
-          <Button full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
+          <Button small full success onPress={() => NavigationService.navigate('BillForm', {isEdit: false})}>
             <Text>Thêm hóa đơn</Text>
           </Button>
         </View>
@@ -27,10 +27,27 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
     if (!date || isBillEmpty(billItems)) return null;
 
     return (
-      <Text style={styles.descriptionText}>Hóa đơn ngày
-        <Text style={styles.customerInfo}> {getDateString(date)} </Text> của
-        <Text style={styles.customerInfo}> {customer.name} </Text>
-      </Text>
+      <View style={styles.billSummary}>
+        <Text style={styles.billHeader}>Hóa đơn ngày
+          <Text style={styles.customerInfo}> {getDateString(date)} </Text> của
+          <Text style={styles.customerInfo}> {customer.name} </Text>
+        </Text>
+      </View>
+    )
+  }
+
+  function showToolbar() {
+    if (!date || isBillEmpty(billItems)) return null;
+
+    return (
+      <View style={styles.toolbar}>
+        <Button small full warning onPress={() => alert('edit')}>
+          <Text>Sửa</Text>
+        </Button>
+        <Button small full light onPress={() => alert('share')}>
+          <Text>Chia sẻ</Text>
+        </Button>
+      </View>
     )
   }
 
@@ -38,7 +55,6 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
     <View style={styles.container}>
       {showEmptyMessage()}
       {showDescriptionText()}
-
       {billItems && billItems.length > 0 &&
       <List dataArray={billItems} renderRow={(item) =>
         <ListItem>
@@ -52,6 +68,7 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
       }>
       </List>
       }
+      {showToolbar()}
     </View>
   )
 };
@@ -61,11 +78,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 10,
   },
-  descriptionText: {
-    padding: 10
+  billSummary: {
+    padding: 10,
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'gray'
   },
   customerInfo: {
     fontWeight: 'bold'
+  },
+  billHeader: {},
+  toolbar: {
+    padding: 5,
+    marginTop: 5,
+    marginBottom: 5,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderBottomWidth: 0.5,
+    // borderBottomColor: 'gray',
+    // borderTopWidth: 0.5,
+    // borderTopColor: 'gray'
   }
 });
 
