@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   billSummary: {
-    backgroundColor: '#dedbdd',
+    backgroundColor: '#f8f9fa',
     padding: 10,
     borderBottomWidth: 0.3,
     borderBottomColor: 'gray',
@@ -87,9 +87,12 @@ const styles = StyleSheet.create({
     borderTopColor: 'gray'
   },
   customerInfo: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    // color: 'white'
   },
-  billHeader: {},
+  billHeader: {
+    // color: 'white'
+  },
   toolbar: {
     padding: 5,
     marginTop: 5,

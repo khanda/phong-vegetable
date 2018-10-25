@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4c8fff'
+    backgroundColor: '#007bff'
   },
   dateLabel: {
     paddingLeft: 10

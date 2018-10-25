@@ -13,10 +13,10 @@ class CustomerListScreen extends React.Component {
   };
 
   render() {
-    DB.bills.erase_db(function(removed_data){
-      console.log('REMOVE BILLS');
-      console.log(removed_data);
-    });
+    // DB.bills.erase_db(function(removed_data){
+    //   console.log('REMOVE BILLS');
+    //   console.log(removed_data);
+    // });
     return (
       <View style={styles.container}>
         <CustomerListContainer/>
