@@ -132,13 +132,22 @@ export default function dailyBillReducer(state = initialState, action) {
         bill: [],
         showAdd: false
       };
+
+    case 'ON_EDIT_BILL':
+      console.log('ON_EDIT_BILL');
+      console.log(action.bill);
+      NavigationService.navigate('BillForm', {isEdit: true});
+      return {
+        ...state,
+        editingBill: action.bill
+      };
     default:
       return state;
   }
 }
 
 export const getBillByCustomer = (state, customerId) => state.dailyBillReducer.bill || initialState.bill;
-export const getEditingBillByCustomer = (state, customerId) => state.editingBill || initialState.editingBill;
+export const getEditingBillByCustomer = (state, customerId) => state.dailyBillReducer.editingBill || initialState.editingBill;
 export const isLoading = (state) => state.dailyBillReducer.loading || false;
 export const getBillDate = (state) => state.dailyBillReducer.date;
 export const getShowAdd = (state) => state.dailyBillReducer.showAdd || null;

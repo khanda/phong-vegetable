@@ -108,7 +108,10 @@ const getBillFailure = error => ({
     error
   }
 });
-
 export const resetFilterBillForm = () => ({
   type: 'RESET_BILL_FILTER_FORM'
+});
+export const onEditBill = (bill) => ({
+  type: 'ON_EDIT_BILL',
+  bill
 });

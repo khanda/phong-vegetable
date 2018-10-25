@@ -5,7 +5,7 @@ import NavigationService from "../navigation/NavigationService";
 import getDateString from "../filters/dateFilter";
 
 
-const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
+const DailyBill = ({billItems, date, customer, isShowAddMsg, onEdit}) => {
   function isBillEmpty(items) {
     return date && (!items || items.length === 0);
   }
@@ -41,7 +41,7 @@ const DailyBill = ({billItems, date, customer, isShowAddMsg}) => {
 
     return (
       <View style={styles.toolbar}>
-        <Button small full warning onPress={() => alert('edit')}>
+        <Button small full warning onPress={() => onEdit(billItems)}>
           <Text>Sửa</Text>
         </Button>
         <Button small full light onPress={() => alert('share')}>
