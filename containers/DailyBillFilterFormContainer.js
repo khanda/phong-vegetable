@@ -1,12 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {ScrollView, StyleSheet, View} from 'react-native'
+import {ScrollView, StyleSheet, View, TouchableOpacity} from 'react-native'
 import {ListItem} from 'react-native-elements'
 import {changeBillDate, getBill} from "../actions";
 import {Button, Container, Content, DatePicker, Header, Spinner, Text} from 'native-base';
 import {getBillDate, isLoading} from "../reducers/dailyBill";
 import {getSelectedCustomer} from "../reducers/customer";
-
 
 const DailyBillFilterForm = ({customer, date, isLoading, onGetBill, onChangeDate}) => {
 
@@ -34,25 +33,27 @@ const DailyBillFilterForm = ({customer, date, isLoading, onGetBill, onChangeDate
       {getCustomer()}
 
       <View style={styles.form}>
-
-        <Text>Chọn ngày cần xem hóa đơn</Text>
-        <DatePicker
-          locale={"vi"}
-          timeZoneOffsetInMinutes={undefined}
-          modalTransparent={false}
-          animationType={"fade"}
-          androidMode={"default"}
-          placeHolderText="ấn để chọn"
-          textStyle={{color: "green"}}
-          placeHolderTextStyle={{color: "#d3d3d3"}}
-          onDateChange={setDate}
-        />
-        {date &&
-        <Button full primary onPress={() => onGetBill(date, customer)}>
-          <Text>Lấy hóa đơn</Text>
-          {isLoading && <Spinner color='white'/>}
-        </Button>
-        }
+        <View>
+          <Text style={styles.dateLabel}>Chọn ngày</Text>
+          <DatePicker
+            locale={"vi"}
+            timeZoneOffsetInMinutes={undefined}
+            modalTransparent={false}
+            animationType={"fade"}
+            androidMode={"default"}
+            placeHolderText="ấn để chọn"
+            textStyle={{color: "green"}}
+            placeHolderTextStyle={{color: "#d3d3d3"}}
+            onDateChange={setDate}
+          />
+        </View>
+        <View style={styles.submitLayout}>
+          {date &&
+          <TouchableOpacity style={styles.getBillBtn} onPress={() => onGetBill(date, customer)}>
+            <Text style={styles.submitText}>Lấy hóa đơn</Text>
+          </TouchableOpacity>
+          }
+        </View>
       </View>
     </View>
   )
@@ -64,7 +65,34 @@ const styles = StyleSheet.create({
     marginBottom: 0
   },
   form: {
-    padding: 5
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    borderBottomWidth: 0.5,
+    borderBottomColor: 'gray',
+    borderTopWidth: 0.1,
+    borderTopColor: 'gray',
+  },
+  submitLayout: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#4c8fff'
+  },
+  dateLabel: {
+    paddingLeft: 10
+  },
+  getBillBtn: {
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  submitText: {
+    color: 'white'
   }
 });
 const mapStateToProps = (state) => {
